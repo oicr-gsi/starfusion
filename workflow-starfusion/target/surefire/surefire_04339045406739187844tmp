@@ -1,0 +1,13 @@
+#surefire_0
+#Tue May 29 14:08:53 EDT 2018
+jpda.address=37505
+maven.ext.class.path=/home/alka/netbeans-8.2/java/maven-nblib/netbeans-eventspy.jar
+bundledBinPath=/home/alka/Desktop/Github/starfusion/workflow-starfusion/target/Workflow_Bundle_starfusion_1.0_SeqWare_1.1.1-gsi/Workflow_Bundle_starfusion/1.0/bin/
+jpda.listen=true
+forkMode=once
+user.dir=/home/alka/Desktop/Github/starfusion/workflow-starfusion
+localRepository=/home/alka/.m2/repository
+test=ca.on.oicr.pde.workflows.STARfusionWorkflowClientTest
+bundleDirectory=/home/alka/Desktop/Github/starfusion/workflow-starfusion/target/Workflow_Bundle_starfusion_1.0_SeqWare_1.1.1-gsi/Workflow_Bundle_starfusion/1.0
+basedir=/home/alka/Desktop/Github/starfusion/workflow-starfusion
+maven.surefire.debug=-Xdebug -Xrunjdwp\:transport\=dt_socket,server\=n,address\=37505

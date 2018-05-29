@@ -42,7 +42,11 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
     private String starfusion;
     private String PERL5LIB;
 
-
+    // environment vars
+    private String envVars;
+    private String perl5lib;
+    private String perlVersion = "5.10.1";
+    
     //Memory allocation
     private Integer starfusionMem;
  
@@ -89,6 +93,11 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
             // starfusion
             starfusionv1Script = getProperty("starfusion_v1");
             starfusionMem = Integer.parseInt(getProperty("starfusion_mem"));
+            
+            // Environment vars
+            perl5lib=getProperty("perl5lib");
+            envVars = "export PERL5_PATH="+this.perl5lib+";";
+     
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -151,28 +160,29 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
 
         // Provision .seg, .varscanSomatic_confints_CP.txt, model-fit.tar.gz files
         String fusionPredictionTsv = this.tmpDir + "star-fusion.fusion_predictions.tsv";
-        SqwFile fusionTSV = createOutputFile(this.outDir + "/" + fusionPredictionTsv, TXT_METATYPE, this.manualOutput);
+        SqwFile fusionTSV = createOutputFile(fusionPredictionTsv, TXT_METATYPE, this.manualOutput);
         fusionTSV.getAnnotations().put("STAR_fusion_prediction_tsv", "STAR_fusion");
         starJob.addFile(fusionTSV);
 
         String fusionAbridgedTsv= this.tmpDir + "star-fusion.fusion_predictions.abridged.tsv ";
-        SqwFile abridgedTSV = createOutputFile(this.outDir + "/" + fusionAbridgedTsv, TXT_METATYPE, this.manualOutput);
+        SqwFile abridgedTSV = createOutputFile(fusionAbridgedTsv, TXT_METATYPE, this.manualOutput);
         abridgedTSV.getAnnotations().put("STAR_fusion_abridged_tsv", "STAR_fusion ");
         starJob.addFile(abridgedTSV);
         
-        SqwFile FFP_coding_effect = createOutputFile(this.outDir + "/" + "FusionInspector-validate/finspector.fusion_predictions.final.abridged.FFPM.coding_effect", TXT_METATYPE, this.manualOutput);
+        SqwFile FFP_coding_effect = createOutputFile(this.tmpDir + "/" + "FusionInspector-validate/finspector.fusion_predictions.final.abridged.FFPM.coding_effect", TXT_METATYPE, this.manualOutput);
         FFP_coding_effect.getAnnotations().put("STAR_fusion_coding_effect_tsv ", "STAR_fusion");
         starJob.addFile(FFP_coding_effect);
     }
 
-   
-    
   
     private Job runStarFusion() {
         Job starJob = getWorkflow().createBashJob("starfusionjob");
         Command cmd = starJob.getCommand();
+        cmd.addArgument("module load perl/"+perlVersion + ";");
+        cmd.addArgument(this.envVars);
+        cmd.addArgument("perl");
         cmd.addArgument(this.starfusionv1Script);
-        cmd.addArgument("--genome_lib_dir" );
+        cmd.addArgument("--genome_lib_dir");
         cmd.addArgument(this.refGenome);
         cmd.addArgument("--left_fq");
         cmd.addArgument(this.read1Fastq);

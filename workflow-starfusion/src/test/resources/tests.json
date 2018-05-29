@@ -10,8 +10,8 @@
         {
             "id": "workflow_test_01",
             "parameters": {
-                "input_read1_fastq": "/scratch2/groups/tgl/starfusion_test/OCT_010211_Om_M_PE_300_WT_170822_NB551056_0022_AH7CLNBGX3_ACAGTG_L001.R1.fastq.gz ",
-                "input_read2_fastq": "/scratch2/groups/tgl/starfusion_test/OCT_010211_Om_M_PE_300_WT_170822_NB551056_0022_AH7CLNBGX3_ACAGTG_L001.R2.fastq.gz",
+                "input_read1_fastq": "/.mounts/labs/PDE/data/starfusions_test/test.R1.fq.gz",
+                "input_read2_fastq": "/.mounts/labs/PDE/data/starfusions_test/test.R1.fq.gz",
                 "external_name": "starfusion_v1"
             }
         }
