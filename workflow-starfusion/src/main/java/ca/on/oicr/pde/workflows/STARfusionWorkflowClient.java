@@ -40,11 +40,10 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
     private String starfusionv1Script;
     //Tools
     private String starfusion;
-    private String PERL5LIB;
-
+   
     // environment vars
     private String envVars;
-    private String perl5lib;
+    private String PERL5LIB;
     private String perlVersion = "5.10.1";
     
     //Memory allocation
@@ -95,8 +94,7 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
             starfusionMem = Integer.parseInt(getProperty("starfusion_mem"));
             
             // Environment vars
-            perl5lib=getProperty("perl5lib");
-            envVars = "export PERL5_PATH="+this.perl5lib+";";
+            envVars = "export PERL5LIB=$PERL5LIB:/.mounts/labs/TGL/gsi/tools/STAR-Fusion-v1.2.0/util/../PerlLib/lib/perl5 ;";
      
 
         } catch (Exception e) {
@@ -190,7 +188,7 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
         cmd.addArgument(this.read2Fastq);
         cmd.addArgument("--examine_coding_effect");
         cmd.addArgument("--FusionInspector validate");
-        cmd.addArgument("--output_dir TMPDIR");
+        cmd.addArgument("--output_dir this.tmpDir");
         starJob.setMaxMemory(Integer.toString(starfusionMem * 1024));
         starJob.setQueue(getOptionalProperty("queue", ""));
         return starJob;

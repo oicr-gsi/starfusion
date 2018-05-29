@@ -11,7 +11,7 @@
             "id": "workflow_test_01",
             "parameters": {
                 "input_read1_fastq": "/.mounts/labs/PDE/data/starfusions_test/test.R1.fq.gz",
-                "input_read2_fastq": "/.mounts/labs/PDE/data/starfusions_test/test.R1.fq.gz",
+                "input_read2_fastq": "/.mounts/labs/PDE/data/starfusions_test/test.R2.fq.gz",
                 "external_name": "starfusion_v1"
             }
         }
