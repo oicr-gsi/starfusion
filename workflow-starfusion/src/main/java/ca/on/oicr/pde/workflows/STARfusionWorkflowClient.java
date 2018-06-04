@@ -32,19 +32,6 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
     private String outputFilenamePrefix;
   
 
-    // Output check
-//    private boolean isFolder = true;
-    //Scripts 
-//    private String sequenzaUtil;
-//    private String sequenzaRscript;
-    private String starfusionv1Script;
-    //Tools
-    private String starfusion;
-   
-    // environment vars
-    private String envVars;
-    private String PERL5LIB;
-    private String perlVersion = "5.10.1";
     
     //Memory allocation
     private Integer starfusionMem;
@@ -90,13 +77,9 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
             queue = getOptionalProperty("queue", "");
 
             // starfusion
-            starfusionv1Script = getProperty("starfusion_v1");
-            starfusionMem = Integer.parseInt(getProperty("starfusion_mem"));
+                starfusionMem = Integer.parseInt(getProperty("starfusion_mem"));
             
-            // Environment vars
-            envVars = "export PERL5LIB=$PERL5LIB:/.mounts/labs/TGL/gsi/tools/STAR-Fusion-v1.2.0/util/../PerlLib/lib/perl5 ;";
-     
-
+            
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -176,10 +159,8 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
     private Job runStarFusion() {
         Job starJob = getWorkflow().createBashJob("starfusionjob");
         Command cmd = starJob.getCommand();
-        cmd.addArgument("module load perl/"+perlVersion + ";");
-        cmd.addArgument(this.envVars);
-        cmd.addArgument("perl");
-        cmd.addArgument(this.starfusionv1Script);
+        cmd.addArgument("module load starfusion;");
+        cmd.addArgument("STAR-Fusion");
         cmd.addArgument("--genome_lib_dir");
         cmd.addArgument(this.refGenome);
         cmd.addArgument("--left_fq");
