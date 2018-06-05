@@ -169,7 +169,7 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
         cmd.addArgument(this.read2Fastq);
         cmd.addArgument("--examine_coding_effect");
         cmd.addArgument("--FusionInspector validate");
-        cmd.addArgument("--output_dir this.tmpDir");
+        cmd.addArgument("--output_dir" + this.tmpDir);
         starJob.setMaxMemory(Integer.toString(starfusionMem * 1024));
         starJob.setQueue(getOptionalProperty("queue", ""));
         return starJob;
