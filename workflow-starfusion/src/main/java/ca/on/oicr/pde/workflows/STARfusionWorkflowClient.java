@@ -150,7 +150,7 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
         abridgedTSV.getAnnotations().put("STAR_fusion_abridged_tsv", "STAR_fusion ");
         starJob.addFile(abridgedTSV);
         
-        SqwFile FFP_coding_effect = createOutputFile(this.tmpDir + "/" + "FusionInspector-validate/finspector.fusion_predictions.final.abridged.FFPM.coding_effect", TXT_METATYPE, this.manualOutput);
+        SqwFile FFP_coding_effect = createOutputFile(this.tmpDir + "FusionInspector-validate/finspector.fusion_predictions.final.abridged.FFPM.coding_effect", TXT_METATYPE, this.manualOutput);
         FFP_coding_effect.getAnnotations().put("STAR_fusion_coding_effect_tsv ", "STAR_fusion");
         starJob.addFile(FFP_coding_effect);
     }
