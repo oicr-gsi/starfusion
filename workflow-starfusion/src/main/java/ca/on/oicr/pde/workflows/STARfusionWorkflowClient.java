@@ -145,15 +145,16 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
         fusionTSV.getAnnotations().put("STAR_fusion_prediction_tsv", "STAR_fusion");
         starJob.addFile(fusionTSV);
 
-        String fusionAbridgedTsv= this.tmpDir + "star-fusion.fusion_predictions.abridged.tsv ";
+        String fusionAbridgedTsv = this.tmpDir + "star-fusion.fusion_predictions.abridged.tsv";
         SqwFile abridgedTSV = createOutputFile(fusionAbridgedTsv, TXT_METATYPE, this.manualOutput);
-        abridgedTSV.getAnnotations().put("STAR_fusion_abridged_tsv", "STAR_fusion ");
+        abridgedTSV.getAnnotations().put("STAR_fusion_abridged_tsv", "STAR_fusion");
         starJob.addFile(abridgedTSV);
         
-        SqwFile FFP_coding_effect = createOutputFile(this.tmpDir + "FusionInspector-validate/finspector.fusion_predictions.final.abridged.FFPM.coding_effect", TXT_METATYPE, this.manualOutput);
-        FFP_coding_effect.getAnnotations().put("STAR_fusion_coding_effect_tsv ", "STAR_fusion");
-        starJob.addFile(FFP_coding_effect);
-    }
+        String FFP_coding_effect = this.tmpDir + "FusionInspector-validate/finspector.fusion_predictions.final.abridged.FFPM.coding_effect";
+        SqwFile codingTSV = createOutputFile(FFP_coding_effect, TXT_METATYPE, this.manualOutput);
+        codingTSV.getAnnotations().put("STAR_fusion_coding_effect_tsv ", "STAR_fusion");
+        starJob.addFile(codingTSV);
+          }
 
   
     private Job runStarFusion() {
