@@ -31,7 +31,8 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
     private String read2Fastq;
     private String outputFilenamePrefix;
   
-
+    // programs
+    private String moduleFile;
     
     //Memory allocation
     private Integer starfusionMem;
@@ -59,6 +60,9 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
             //dir
             dataDir = "data";
             tmpDir = getProperty("tmp_dir");
+            
+            //program
+            moduleFile = getProperty("moduleLoadFile");
 
             // input samples 
             read1Fastq = getProperty("input_read1_fastq");
@@ -150,7 +154,7 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
         abridgedTSV.getAnnotations().put("STAR_fusion_abridged_tsv", "STAR_fusion");
         starJob.addFile(abridgedTSV);
         
-        String FFP_coding_effect = this.tmpDir + "FusionInspector-validate/finspector.fusion_predictions.final.abridged.FFPM.coding_effect";
+        String FFP_coding_effect = this.tmpDir + "star-fusion.fusion_predictions.abridged.coding_effect.tsv";
         SqwFile codingTSV = createOutputFile(FFP_coding_effect, TXT_METATYPE, this.manualOutput);
         codingTSV.getAnnotations().put("STAR_fusion_coding_effect_tsv ", "STAR_fusion");
         starJob.addFile(codingTSV);
@@ -160,6 +164,7 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
     private Job runStarFusion() {
         Job starJob = getWorkflow().createBashJob("starfusionjob");
         Command cmd = starJob.getCommand();
+        cmd.addArgument("module use" + this.moduleFile);
         cmd.addArgument("module load starfusion;");
         cmd.addArgument("STAR-Fusion");
         cmd.addArgument("--genome_lib_dir " + this.refGenome);
