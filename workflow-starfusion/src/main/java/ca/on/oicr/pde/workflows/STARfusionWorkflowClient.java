@@ -164,7 +164,7 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
     private Job runStarFusion() {
         Job starJob = getWorkflow().createBashJob("starfusionjob");
         Command cmd = starJob.getCommand();
-        cmd.addArgument("module use" + this.moduleFile);
+        cmd.addArgument("module use " + this.moduleFile);
         cmd.addArgument("module load starfusion;");
         cmd.addArgument("STAR-Fusion");
         cmd.addArgument("--genome_lib_dir " + this.refGenome);
