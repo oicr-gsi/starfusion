@@ -164,12 +164,12 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
     private Job runStarFusion() {
         Job starJob = getWorkflow().createBashJob("starfusionjob");
         Command cmd = starJob.getCommand();
-        cmd.addArgument("export LD_LIBRARY_PATH=/oicr/local/analysis/sw/perl/perl-5.22.2-tgl/lib:$LD_LIBRARY_PATH");
-        cmd.addArgument("export PERL5LIB=/oicr/local/analysis/sw/perl/perl-5.22.2-tgl/lib:$PERL5LIB");
-        cmd.addArgument("export PATH=/oicr/local/analysis/sw/perl/perl-5.22.2-tgl/bin:$PATH");
-        cmd.addArgument("export PATH=/oicr/local/analysis/sw/star/STAR-2.6.0c/bin/Linux_x86_64_static:$PATH");
-        cmd.addArgument("export PATH=/oicr/local/analysis/sw//samtools/samtools-0.1.17:$PATH");
-        cmd.addArgument("export PATH=/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0:$PATH");
+        cmd.addArgument("export LD_LIBRARY_PATH=/oicr/local/analysis/sw/perl/perl-5.22.2-tgl/lib:$LD_LIBRARY_PATH" +";");
+        cmd.addArgument("export PERL5LIB=/oicr/local/analysis/sw/perl/perl-5.22.2-tgl/lib:$PERL5LIB" + ";");
+        cmd.addArgument("export PATH=/oicr/local/analysis/sw/perl/perl-5.22.2-tgl/bin:$PATH"+ ";");
+        cmd.addArgument("export PATH=/oicr/local/analysis/sw/star/STAR-2.6.0c/bin/Linux_x86_64_static:$PATH"+ ";");
+        cmd.addArgument("export PATH=/oicr/local/analysis/sw//samtools/samtools-0.1.17:$PATH"+ ";");
+        cmd.addArgument("export PATH=/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0:$PATH"+ ";");
         cmd.addArgument("STAR-Fusion");
         cmd.addArgument("--genome_lib_dir " + this.refGenome);
         cmd.addArgument("--left_fq " + this.read1Fastq);
