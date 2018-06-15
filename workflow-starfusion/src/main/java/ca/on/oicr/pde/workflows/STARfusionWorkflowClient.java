@@ -109,7 +109,7 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
         file0.setType(FASTQ_GZIP_MIMETYPE);
         file0.setIsInput(true);
         SqwFile file1 = this.createFile("read2");
-        file1.setSourcePath(read1Fastq);
+        file1.setSourcePath(read2Fastq);
         file1.setType(FASTQ_GZIP_MIMETYPE);
         file1.setIsInput(true);
         return this.getFiles();
