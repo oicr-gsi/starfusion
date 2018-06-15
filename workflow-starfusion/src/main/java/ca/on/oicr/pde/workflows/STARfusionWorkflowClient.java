@@ -176,8 +176,8 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
         cmd.addArgument("export TABIXROOT=/oicr/local/analysis/sw/tabix/tabix-0.2.6"+ ";");
         cmd.addArgument("STAR-Fusion");
         cmd.addArgument("--genome_lib_dir " + this.refGenome);
-        cmd.addArgument("--left_fq " + this.read1Fastq);
-        cmd.addArgument("--right_fq " + this.read2Fastq);
+        cmd.addArgument("--left_fq " + getFiles().get("read1").getProvisionedPath());
+        cmd.addArgument("--right_fq " + getFiles().get("read2").getProvisionedPath());
         cmd.addArgument("--examine_coding_effect");
         cmd.addArgument("--FusionInspector validate");
         cmd.addArgument("--output_dir " + this.tmpDir);
