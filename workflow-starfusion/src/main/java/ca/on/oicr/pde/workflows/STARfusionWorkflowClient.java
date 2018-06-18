@@ -32,7 +32,16 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
     private String outputFilenamePrefix;
   
     // programs
-  //*  private String moduleFile;
+    private String ld_library_path;
+    private String perl5lib; 
+    private String path; 
+    private String path2; 
+    private String path3; 
+    private String path4; 
+    private String ld_library_path_2; 
+    private String path5;
+    private String perl5lib_2;
+    private String tabixroot; 
     
     //Memory allocation
     private Integer starfusionMem;
@@ -71,7 +80,18 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
             //Ext id
             outputFilenamePrefix = getProperty("external_name");
 
-         
+            // Tools
+            ld_library_path = getProperty("LD_LIBRARY_PATH");
+            perl5lib = getProperty("PERL5LIB");
+            path = getProperty("PATH");
+            path2 = getProperty("PATH2");
+            path3 = getProperty("PATH3");
+            path4 = getProperty("PATH4");
+            ld_library_path_2 = getProperty("LD_LIBRARY_PATH_2");
+            path5 = getProperty("PATH5");
+            perl5lib_2 = getProperty("PERL5LIB_2");
+            tabixroot = getProperty("TABIXROOT");
+            
             // ref fasta
             refGenome = getProperty("ref_genome");
            
@@ -119,19 +139,7 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
     public void buildWorkflow() {
 
         /**
-         * Steps for sequenza: 1. Check if "bam" file exists; true 2. Check if
-         * "bai" file exists; true: go to step 4 3. Check if normal Pb_R sample
-         * exists; true: go to step 4; else abort 3. If false: samtools index
-         * "bam" file 4. Run job sequenza-utils 5. If outputFile ends with
-         * "bin50.gz"; go to step 6; else go to step 4 6. Run job sequenzaR 7.
-         * Iterate through the files/folders in outDir: 8. If fileName1 ==
-         * "pandc.txt" and fileName2 ends with "Total_CN.seg"; create a folder
-         * called "copynumber" 9. If fileType == "folder"; create a folder
-         * called "model-fit"; move folders to "model-fit" 10. If fileType ==
-         * "file" && fileName != outputFile; move file to "model-fit" 11. Delete
-         * outputFile (rm outputFile) 12. zip "model-fit" 13. outputFile =
-         * fileName2 14. OutputDir contains the following: fileName1,
-         * outputFile, model-fit.zip
+         * STAR-Fusion: 
          */
         // workflow : read inputs read1 fastq and read2 fastq file; run star-fusion; write the output to temp directory; 
         // run sequenzaR; handle output; provision files (3) -- .tsv, .tsv, .tsv;
@@ -164,16 +172,16 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
     private Job runStarFusion() {
         Job starJob = getWorkflow().createBashJob("starfusionjob");
         Command cmd = starJob.getCommand();
-        cmd.addArgument("export LD_LIBRARY_PATH=/oicr/local/analysis/sw/perl/perl-5.22.2-tgl/lib:$LD_LIBRARY_PATH" +";");
-        cmd.addArgument("export PERL5LIB=/oicr/local/analysis/sw/perl/perl-5.22.2-tgl/lib:$PERL5LIB" + ";");
-        cmd.addArgument("export PATH=/oicr/local/analysis/sw/perl/perl-5.22.2-tgl/bin:$PATH"+ ";");
-        cmd.addArgument("export PATH=/oicr/local/analysis/sw/star/STAR-2.6.0c/bin/Linux_x86_64_static:$PATH"+ ";");
-        cmd.addArgument("export PATH=/oicr/local/analysis/sw//samtools/samtools-0.1.17:$PATH"+ ";");
-        cmd.addArgument("export PATH=/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0:$PATH"+ ";");
-        cmd.addArgument("export LD_LIBRARY_PATH=/oicr/local/analysis/sw/tabix/tabix-0.2.6:$LD_LIBRARY_PATH"+ ";");
-        cmd.addArgument("export PATH=/oicr/local/analysis/sw/tabix/tabix-0.2.6:$PATH"+ ";");
-        cmd.addArgument("export PERL5LIB=/oicr/local/analysis/sw/tabix/tabix-0.2.6/lib/perl5:$PERL5LIB"+ ";");
-        cmd.addArgument("export TABIXROOT=/oicr/local/analysis/sw/tabix/tabix-0.2.6"+ ";");
+        cmd.addArgument("export " + this.ld_library_path +";");
+        cmd.addArgument("export " + this.perl5lib + ";");
+        cmd.addArgument("export " + this.path + ";");
+        cmd.addArgument("export " + this.path2 + ";");
+        cmd.addArgument("export " + this.path3 + ";");
+        cmd.addArgument("export " + this.path4 + ";");
+        cmd.addArgument("export " + this.ld_library_path_2 + ";");
+        cmd.addArgument("export " + this.path5 + ";");
+        cmd.addArgument("export " + this.perl5lib_2 +";");
+        cmd.addArgument("export " + this.tabixroot + ";");
         cmd.addArgument("STAR-Fusion");
         cmd.addArgument("--genome_lib_dir " + this.refGenome);
         cmd.addArgument("--left_fq " + getFiles().get("read1").getProvisionedPath());
@@ -185,5 +193,4 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
         starJob.setQueue(getOptionalProperty("queue", ""));
         return starJob;
     }}
-
 
