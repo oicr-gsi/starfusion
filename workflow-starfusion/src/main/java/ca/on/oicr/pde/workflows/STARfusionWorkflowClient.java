@@ -37,6 +37,11 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
     private String star;
     private String samtools;
     private String starfusion;
+    private String perlexport;
+    private String tabixexport;
+    private String starexport;
+    private String samexport;
+    private String starfusionexport;
 
     //Memory allocation
     private Integer starfusionMem;
@@ -76,6 +81,23 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
             star = getProperty("STAR");
             samtools = getProperty("SAMTOOLS");
             starfusion = getProperty("STARFUSION");
+            
+            perlexport ="export LD_LIBRARY_PATH=" + this.perl + "/lib:$LD_LIBRARY_PATH" + ";" +
+                        "export PERL5LIB=" + this.perl + "/lib:$PERL5LIB" + ";" +
+                        "export PATH=" + this.perl + "/bin:$PATH" + ";";
+            
+            starexport = "export PATH=" + this.star + ":$PATH" + ";";
+            
+            samexport =  "export PATH=" + this.samtools + ":$PATH" + ";";
+            
+            starfusionexport = "export PATH=" + this.starfusion + ":$PATH" + ";";
+            
+            tabixexport =  "export LD_LIBRARY_PATH=" + this.tabix + ":$LD_LIBRARY_PATH" + ";" +
+                           "export PATH=" + this.tabix + ":$PATH" + ";" +
+                           "export PERL5LIB=" + this.tabix + "/lib/perl5:$PERL5LIB" + ";" +
+                           "export TABIXROOT=" + this.tabix + ";";
+            
+         
 
             // ref fasta
             refGenome = getProperty("ref_genome");
@@ -150,16 +172,11 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
     private Job runStarFusion() {
         Job starJob = getWorkflow().createBashJob("starfusionjob");
         Command cmd = starJob.getCommand();
-        cmd.addArgument("export LD_LIBRARY_PATH=" + this.perl + "/lib:$LD_LIBRARY_PATH" + ";");
-        cmd.addArgument("export PERL5LIB=" + this.perl + "/lib:$PERL5LIB" + ";");
-        cmd.addArgument("export PATH=" + this.perl + "/bin:$PATH" + ";");
-        cmd.addArgument("export PATH=" + this.star + ":$PATH" + ";");
-        cmd.addArgument("export PATH=" + this.samtools + ":$PATH" + ";");
-        cmd.addArgument("export PATH=" + this.starfusion + ":$PATH" + ";");
-        cmd.addArgument("export LD_LIBRARY_PATH=" + this.tabix + ":$LD_LIBRARY_PATH" + ";");
-        cmd.addArgument("export PATH=" + this.tabix + ":$PATH" + ";");
-        cmd.addArgument("export PERL5LIB=" + this.tabix + "/lib/perl5:$PERL5LIB" + ";");
-        cmd.addArgument("export TABIXROOT=" + this.tabix + ";");
+        cmd.addArgument(this.perlexport);
+        cmd.addArgument(this.starexport);
+        cmd.addArgument(this.samexport);
+        cmd.addArgument(this.starfusionexport);
+        cmd.addArgument(this.tabixexport);
         cmd.addArgument("STAR-Fusion");
         cmd.addArgument("--genome_lib_dir " + this.refGenome);
         cmd.addArgument("--left_fq " + getFiles().get("read1").getProvisionedPath());
