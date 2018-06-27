@@ -11,7 +11,7 @@
     </parent>
 
     <groupId>ca.on.oicr.pde.deciders</groupId>
-    <artifactId>decider-STARfusion</artifactId>
+    <artifactId>decider-starfusion</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
@@ -27,5 +27,5 @@
             <version>${workflow-version}</version>
         </dependency>
     </dependencies>
-    <name>decider-STARfusion</name>
+    <name>decider-starfusion</name>
 </project>
