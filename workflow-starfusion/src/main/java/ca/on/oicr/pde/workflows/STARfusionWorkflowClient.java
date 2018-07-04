@@ -36,15 +36,15 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
     private String tabix;
     private String star;
     private String samtools;
-    private String starfusion;
-    private String perlexport;
-    private String tabixexport;
-    private String starexport;
-    private String samexport;
-    private String starfusionexport;
+    private String starFusion;
+    private String perlExport;
+    private String tabixExport;
+    private String starExport;
+    private String samExport;
+    private String starfusionExport;
 
     //Memory allocation
-    private Integer starfusionMem;
+    private Integer starFusionMem;
 
     //path to bin
     private String bin;
@@ -80,19 +80,19 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
             tabix = getProperty("tabix");
             star = getProperty("star");
             samtools = getProperty("samtools");
-            starfusion = getProperty("starfusion");
+            starFusion = getProperty("starfusion");
             
-            perlexport ="export LD_LIBRARY_PATH=" + this.perl + "/lib:$LD_LIBRARY_PATH" + ";" +
+            perlExport ="export LD_LIBRARY_PATH=" + this.perl + "/lib:$LD_LIBRARY_PATH" + ";" +
                         "export PERL5LIB=" + this.perl + "/lib:$PERL5LIB" + ";" +
                         "export PATH=" + this.perl + "/bin:$PATH" + ";";
             
-            starexport = "export PATH=" + this.star + ":$PATH" + ";";
+            starExport = "export PATH=" + this.star + ":$PATH" + ";";
             
-            samexport =  "export PATH=" + this.samtools + ":$PATH" + ";";
+            samExport =  "export PATH=" + this.samtools + ":$PATH" + ";";
             
-            starfusionexport = "export PATH=" + this.starfusion + ":$PATH" + ";";
+            starfusionExport = "export PATH=" + this.starFusion + ":$PATH" + ";";
             
-            tabixexport =  "export LD_LIBRARY_PATH=" + this.tabix + ":$LD_LIBRARY_PATH" + ";" +
+            tabixExport =  "export LD_LIBRARY_PATH=" + this.tabix + ":$LD_LIBRARY_PATH" + ";" +
                            "export PATH=" + this.tabix + ":$PATH" + ";" +
                            "export PERL5LIB=" + this.tabix + "/lib/perl5:$PERL5LIB" + ";" +
                            "export TABIXROOT=" + this.tabix + ";";
@@ -105,8 +105,8 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
             manualOutput = Boolean.parseBoolean(getProperty("manual_output"));
             queue = getOptionalProperty("queue", "");
 
-            // starfusion
-            starfusionMem = Integer.parseInt(getProperty("starfusion_mem"));
+            // starFusion
+            starFusionMem = Integer.parseInt(getProperty("starfusion_mem"));
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -172,11 +172,11 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
     private Job runStarFusion() {
         Job starJob = getWorkflow().createBashJob("starfusionjob");
         Command cmd = starJob.getCommand();
-        cmd.addArgument(this.perlexport);
-        cmd.addArgument(this.starexport);
-        cmd.addArgument(this.samexport);
-        cmd.addArgument(this.starfusionexport);
-        cmd.addArgument(this.tabixexport);
+        cmd.addArgument(this.perlExport);
+        cmd.addArgument(this.starExport);
+        cmd.addArgument(this.samExport);
+        cmd.addArgument(this.starfusionExport);
+        cmd.addArgument(this.tabixExport);
         cmd.addArgument("STAR-Fusion");
         cmd.addArgument("--genome_lib_dir " + this.refGenome);
         cmd.addArgument("--left_fq " + getFiles().get("read1").getProvisionedPath());
@@ -184,7 +184,7 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
         cmd.addArgument("--examine_coding_effect");
         cmd.addArgument("--FusionInspector validate");
         cmd.addArgument("--output_dir " + this.tmpDir);
-        starJob.setMaxMemory(Integer.toString(starfusionMem * 1024));
+        starJob.setMaxMemory(Integer.toString(starFusionMem * 1024));
         starJob.setQueue(queue);
         return starJob;
     }
