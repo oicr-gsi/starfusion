@@ -42,8 +42,8 @@ public class STARfusionDecider extends OicrDecider {
 
         //allows anything defined on the command line to override the defaults here.
         //star
-        if (this.options.has("starfusion_mem")) {
-            this.starfusionMemory = options.valueOf("starfusion_mem").toString();
+        if (this.options.has("starfusion-mem")) {
+            this.starfusionMemory = options.valueOf("starfusion-mem").toString();
         }
         if (this.options.has("template-type")) {
             String templateTypeArg = this.options.valueOf("template-type").toString();
@@ -121,7 +121,7 @@ public class STARfusionDecider extends OicrDecider {
         Map<String, String> iniFileMap = super.modifyIniFile(commaSeparatedFilePaths, commaSeparatedParentAccessions);
         iniFileMap.put("input_file_1", input_read1_fastq);
         iniFileMap.put("input_file_2", input_read2_fastq);
-        iniFileMap.put("starfusion_mem", this.starfusionMemory);
+        iniFileMap.put("starfusion-mem", this.starfusionMemory);
 
         return iniFileMap;
     }
