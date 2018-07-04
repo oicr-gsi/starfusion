@@ -76,11 +76,11 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
             outputFilenamePrefix = getProperty("external_name");
 
             // Tools
-            perl = getProperty("PERL");
-            tabix = getProperty("TABIX");
-            star = getProperty("STAR");
-            samtools = getProperty("SAMTOOLS");
-            starfusion = getProperty("STARFUSION");
+            perl = getProperty("perl");
+            tabix = getProperty("tabix");
+            star = getProperty("star");
+            samtools = getProperty("samtools");
+            starfusion = getProperty("starfusion");
             
             perlexport ="export LD_LIBRARY_PATH=" + this.perl + "/lib:$LD_LIBRARY_PATH" + ";" +
                         "export PERL5LIB=" + this.perl + "/lib:$PERL5LIB" + ";" +

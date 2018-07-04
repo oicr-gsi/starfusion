@@ -10,20 +10,12 @@ import net.sourceforge.seqware.common.util.Log;
 
 /**
  *
- * @author rtahir
+ * @author alka
  */
 public class STARfusionDecider extends OicrDecider {
 
-    private String ref_genome;
-    private String produce_transcriptome_bam = "true";
-    private String RGCM = "";
-    private String additionalStarParams = "";
-    private String numOfThreads = "6";
     private String starfusionMemory = "64";
-    private String queue = "";
 
-    private static final String OICR = "OICR";
-    private static final String ILLUMINA = "Illumina"; //If we don't have this passed as parameter, we assume Illumina
     private Set<String> allowedTemplateTypes;
 
     private String input_read1_fastq;
@@ -34,20 +26,11 @@ public class STARfusionDecider extends OicrDecider {
         super();
         parser.accepts("ini-file", "Optional: the location of the INI file.").withRequiredArg();
 
-        //star aln
-      
+        //starfusion
         parser.accepts("starfusion-mem", "Optional: STAR allocated memory Gb, default is 64.").withRequiredArg();
 
         //RG parameters
-        parser.accepts("rg-library", "Optional: RG Library, (LB).").withRequiredArg();
-        parser.accepts("rg-platform", "Optional: RG Platform, default illumina.").withRequiredArg();
-        parser.accepts("rg-platform-unit", "Optional: RG Platform unit (PU).").withRequiredArg();
-        parser.accepts("rg-sample-name", "Optional: RG Sample name (SM).").withRequiredArg();
-        parser.accepts("rg-organization", "Optional: RG Organization (CM).").withRequiredArg();
         parser.accepts("template-type", "Optional: limit the run to only specified template type(s) (comma separated list).").withRequiredArg();
-        //Trimming
-        parser.accepts("r1-adapter-trim", "Optional: Barcode, default is empty string.").withRequiredArg();
-        parser.accepts("r2-adapter-trim", "Optional: Sequencing platform, will be set to production if no value passed.").withRequiredArg();
 
     }
 
@@ -58,29 +41,13 @@ public class STARfusionDecider extends OicrDecider {
         this.setHeadersToGroupBy(Arrays.asList(FindAllTheFiles.Header.IUS_SWA));
 
         //allows anything defined on the command line to override the defaults here.
-        
-
-       
-        //RG parameters populated at the end     
-        if (this.options.has("rg-organization")) {
-            this.RGCM = options.valueOf("rg-organization").toString();
-        } else {
-            this.RGCM = OICR;
-        }
-
         //star
-        if (this.options.has("star-threads")) {
-            this.numOfThreads = options.valueOf("star-threads").toString();
-        }
-        if (this.options.has("star-aln-mem-mb")) {
+        if (this.options.has("starfusion_mem")) {
             this.starfusionMemory = options.valueOf("starfusion_mem").toString();
         }
         if (this.options.has("template-type")) {
             String templateTypeArg = this.options.valueOf("template-type").toString();
             allowedTemplateTypes = Sets.newHashSet(templateTypeArg.split(","));
-        }
-        if (this.options.has("additionalStarParams")) {
-            this.additionalStarParams = this.options.valueOf("additionalStarParams").toString();
         }
 
         ReturnValue val = super.init();
@@ -112,7 +79,7 @@ public class STARfusionDecider extends OicrDecider {
                     break;
                 case 2:
                     if (this.input_read2_fastq != null) {
-                        Log.error("More than one file found for read 2: " + input_read2_fastq+ ", " + file);
+                        Log.error("More than one file found for read 2: " + input_read2_fastq + ", " + file);
                         return new ReturnValue(ExitStatus.INVALIDFILE);
                     }
                     this.input_read2_fastq = file;
@@ -154,12 +121,7 @@ public class STARfusionDecider extends OicrDecider {
         Map<String, String> iniFileMap = super.modifyIniFile(commaSeparatedFilePaths, commaSeparatedParentAccessions);
         iniFileMap.put("input_file_1", input_read1_fastq);
         iniFileMap.put("input_file_2", input_read2_fastq);
-
-
-       
         iniFileMap.put("starfusion_mem", this.starfusionMemory);
-
-
 
         return iniFileMap;
     }
