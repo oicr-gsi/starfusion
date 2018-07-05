@@ -17,6 +17,7 @@ public class STARfusionDecider extends OicrDecider {
     private String starfusionMemory = "64";
 
     private Set<String> allowedTemplateTypes;
+    private String queue = "";
 
     private String input_read1_fastq;
     private String input_read2_fastq;
@@ -31,7 +32,7 @@ public class STARfusionDecider extends OicrDecider {
 
         //RG parameters
         parser.accepts("template-type", "Optional: limit the run to only specified template type(s) (comma separated list).").withRequiredArg();
-
+        parser.accepts("queue", "Optional: Set the queue (Default: not set)").withRequiredArg();
     }
 
     @Override
@@ -118,14 +119,17 @@ public class STARfusionDecider extends OicrDecider {
     protected Map<String, String> modifyIniFile(String commaSeparatedFilePaths, String commaSeparatedParentAccessions) {
         Log.debug("INI FILE:" + commaSeparatedFilePaths);
 
-        Map<String, String> iniFileMap = super.modifyIniFile(commaSeparatedFilePaths, commaSeparatedParentAccessions);
+    Map<String, String> iniFileMap = super.modifyIniFile(commaSeparatedFilePaths, commaSeparatedParentAccessions);
         iniFileMap.put("input_file_1", input_read1_fastq);
         iniFileMap.put("input_file_2", input_read2_fastq);
         iniFileMap.put("starfusion_mem", this.starfusionMemory);
 
+         if (!this.queue.isEmpty()) {
+            iniFileMap.put("queue", this.queue);
+        }
+
         return iniFileMap;
     }
-
     public static void main(String args[]) {
 
         List<String> params = new ArrayList<String>();
