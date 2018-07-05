@@ -41,7 +41,7 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
     private String tabixExport;
     private String starExport;
     private String samExport;
-    private String starfusionExport;
+    private String starFusionExport;
 
     //Memory allocation
     private Integer starFusionMem;
@@ -90,7 +90,7 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
             
             samExport =  "export PATH=" + this.samtools + ":$PATH" + ";";
             
-            starfusionExport = "export PATH=" + this.starFusion + ":$PATH" + ";";
+            starFusionExport = "export PATH=" + this.starFusion + ":$PATH" + ";";
             
             tabixExport =  "export LD_LIBRARY_PATH=" + this.tabix + ":$LD_LIBRARY_PATH" + ";" +
                            "export PATH=" + this.tabix + ":$PATH" + ";" +
@@ -175,7 +175,7 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
         cmd.addArgument(this.perlExport);
         cmd.addArgument(this.starExport);
         cmd.addArgument(this.samExport);
-        cmd.addArgument(this.starfusionExport);
+        cmd.addArgument(this.starFusionExport);
         cmd.addArgument(this.tabixExport);
         cmd.addArgument("STAR-Fusion");
         cmd.addArgument("--genome_lib_dir " + this.refGenome);
