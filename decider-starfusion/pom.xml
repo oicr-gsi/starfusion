@@ -19,6 +19,7 @@
         <workflow-version>1.0</workflow-version>
         <main-class>ca.on.oicr.pde.deciders.STARfusionDecider</main-class>
         <runTestThreads>4</runTestThreads>
+        <testSuite>target/test-classes/development.xml</testSuite>
     </properties>
     
     <dependencies>
