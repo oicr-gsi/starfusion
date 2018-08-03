@@ -1,6 +1,6 @@
 package ca.on.oicr.pde.deciders;
 
-import com.google.common.collect.Sets;
+
 import java.util.*;
 import net.sourceforge.seqware.common.hibernate.FindAllTheFiles;
 import net.sourceforge.seqware.common.module.FileMetadata;
@@ -18,10 +18,12 @@ public class STARfusionDecider extends OicrDecider {
 
     private Set<String> allowedTemplateTypes;
     private String queue = "";
-
+    private String templateType = "WT";
     private String input_read1_fastq;
     private String input_read2_fastq;
+    private String external_name;
     private ReadGroupData readGroupDataForWorkflowRun;
+    private String currentTtype;
 
     public STARfusionDecider() {
         super();
@@ -47,8 +49,10 @@ public class STARfusionDecider extends OicrDecider {
             this.starfusionMemory = options.valueOf("starfusion-mem").toString();
         }
         if (this.options.has("template-type")) {
-            String templateTypeArg = this.options.valueOf("template-type").toString();
-            allowedTemplateTypes = Sets.newHashSet(templateTypeArg.split(","));
+            this.templateType = this.options.valueOf("template-type").toString();
+            if (!this.templateType.equals("WT")) {
+                Log.error("Wrong template type; Runs only for WT");
+            }
         }
 
         ReturnValue val = super.init();
@@ -104,32 +108,44 @@ public class STARfusionDecider extends OicrDecider {
     @Override
     protected boolean checkFileDetails(ReturnValue returnValue, FileMetadata fm) {
         Log.debug("CHECK FILE DETAILS:" + fm);
-
         if (allowedTemplateTypes != null) {
             String currentTemplateType = returnValue.getAttribute(FindAllTheFiles.Header.SAMPLE_TAG_PREFIX.getTitle() + "geo_library_source_template_type");
-            if (!allowedTemplateTypes.contains(currentTemplateType)) {
-                return false;
+            // Filter the data of a different template type if filter is specified
+            if (!this.templateType.equalsIgnoreCase(currentTtype)) {
+                Log.warn("Excluding file with SWID = [" + returnValue.getAttribute(FindAllTheFiles.Header.FILE_SWA.getTitle())
+                        + "] due to template type/geo_library_source_template_type = [" + currentTtype + "]");
+                return false;}
+                
+        if (!allowedTemplateTypes.contains(currentTemplateType)) {
+                    return false;
+                }
             }
+            this.external_name = returnValue.getAttribute(FindAllTheFiles.Header.SAMPLE_NAME.getTitle());
+
+            return super.checkFileDetails(returnValue, fm);
         }
 
-        return super.checkFileDetails(returnValue, fm);
-    }
-
-    @Override
-    protected Map<String, String> modifyIniFile(String commaSeparatedFilePaths, String commaSeparatedParentAccessions) {
+        @Override
+        protected Map<String, String> modifyIniFile
+        (String commaSeparatedFilePaths, String commaSeparatedParentAccessions
+        
+            ) {
         Log.debug("INI FILE:" + commaSeparatedFilePaths);
 
-    Map<String, String> iniFileMap = super.modifyIniFile(commaSeparatedFilePaths, commaSeparatedParentAccessions);
-        iniFileMap.put("input_file_1", input_read1_fastq);
-        iniFileMap.put("input_file_2", input_read2_fastq);
-        iniFileMap.put("starfusion_mem", this.starfusionMemory);
+            Map<String, String> iniFileMap = super.modifyIniFile(commaSeparatedFilePaths, commaSeparatedParentAccessions);
+            iniFileMap.put("input_read1_fastq", input_read1_fastq);
+            iniFileMap.put("input_read2_fastq", input_read2_fastq);
+            iniFileMap.put("starfusion_mem", this.starfusionMemory);
+            iniFileMap.put("external_name", this.external_name);
 
-         if (!this.queue.isEmpty()) {
-            iniFileMap.put("queue", this.queue);
+            if (!this.queue.isEmpty()) {
+                iniFileMap.put("queue", this.queue);
+            }
+
+            return iniFileMap;
         }
+    
 
-        return iniFileMap;
-    }
     public static void main(String args[]) {
 
         List<String> params = new ArrayList<String>();
