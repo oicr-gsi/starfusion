@@ -19,9 +19,9 @@ public class STARfusionDecider extends OicrDecider {
     private Set<String> allowedTemplateTypes;
     private String queue = "";
     private String templateType = "WT";
-    private String input_read1_fastq;
-    private String input_read2_fastq;
-    private String external_name;
+    private String inputRead1Fastq;
+    private String inputRead2Fastq;
+    private String externalName;
     private ReadGroupData readGroupDataForWorkflowRun;
     private String currentTtype;
 
@@ -62,8 +62,8 @@ public class STARfusionDecider extends OicrDecider {
 
     @Override
     protected ReturnValue doFinalCheck(String commaSeparatedFilePaths, String commaSeparatedParentAccessions) {
-        this.input_read1_fastq = null;
-        this.input_read2_fastq = null;
+        this.inputRead1Fastq = null;
+        this.inputRead2Fastq = null;
 
         String[] filePaths = commaSeparatedFilePaths.split(",");
         if (filePaths.length != 2) {
@@ -76,18 +76,18 @@ public class STARfusionDecider extends OicrDecider {
             int mate = idMate(file);
             switch (mate) {
                 case 1:
-                    if (this.input_read1_fastq != null) {
-                        Log.error("More than one file found for read 1: " + input_read1_fastq + ", " + file);
+                    if (this.inputRead1Fastq != null) {
+                        Log.error("More than one file found for read 1: " + inputRead1Fastq + ", " + file);
                         return new ReturnValue(ExitStatus.INVALIDFILE);
                     }
-                    this.input_read1_fastq = file;
+                    this.inputRead1Fastq = file;
                     break;
                 case 2:
-                    if (this.input_read2_fastq != null) {
-                        Log.error("More than one file found for read 2: " + input_read2_fastq + ", " + file);
+                    if (this.inputRead2Fastq != null) {
+                        Log.error("More than one file found for read 2: " + inputRead2Fastq + ", " + file);
                         return new ReturnValue(ExitStatus.INVALIDFILE);
                     }
-                    this.input_read2_fastq = file;
+                    this.inputRead2Fastq = file;
                     break;
                 default:
                     Log.error("Cannot identify " + file + " end (read 1 or 2)");
@@ -95,12 +95,12 @@ public class STARfusionDecider extends OicrDecider {
             }
         }
 
-        if (input_read1_fastq == null || input_read2_fastq == null) {
+        if (inputRead1Fastq == null || inputRead2Fastq == null) {
             Log.error("The Decider was not able to find both R1 and R2 fastq files for paired sequencing alignment, WON'T RUN");
             return new ReturnValue(ReturnValue.INVALIDPARAMETERS);
         }
 
-        readGroupDataForWorkflowRun = new ReadGroupData(files.get(input_read1_fastq), files.get(input_read2_fastq));
+        readGroupDataForWorkflowRun = new ReadGroupData(files.get(inputRead1Fastq), files.get(inputRead2Fastq));
 
         return super.doFinalCheck(commaSeparatedFilePaths, commaSeparatedParentAccessions);
     }
@@ -120,7 +120,7 @@ public class STARfusionDecider extends OicrDecider {
                     return false;
                 }
             }
-            this.external_name = returnValue.getAttribute(FindAllTheFiles.Header.SAMPLE_NAME.getTitle());
+            this.externalName = returnValue.getAttribute(FindAllTheFiles.Header.SAMPLE_NAME.getTitle());
 
             return super.checkFileDetails(returnValue, fm);
         }
@@ -133,10 +133,10 @@ public class STARfusionDecider extends OicrDecider {
         Log.debug("INI FILE:" + commaSeparatedFilePaths);
 
             Map<String, String> iniFileMap = super.modifyIniFile(commaSeparatedFilePaths, commaSeparatedParentAccessions);
-            iniFileMap.put("input_read1_fastq", input_read1_fastq);
-            iniFileMap.put("input_read2_fastq", input_read2_fastq);
+            iniFileMap.put("input_read1_fastq", inputRead1Fastq);
+            iniFileMap.put("input_read2_fastq", inputRead2Fastq);
             iniFileMap.put("starfusion_mem", this.starfusionMemory);
-            iniFileMap.put("external_name", this.external_name);
+           iniFileMap.put("external_name", this.externalName);
 
             if (!this.queue.isEmpty()) {
                 iniFileMap.put("queue", this.queue);
