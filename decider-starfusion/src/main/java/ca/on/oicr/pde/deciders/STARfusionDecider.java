@@ -22,7 +22,7 @@ public class STARfusionDecider extends OicrDecider {
     private String inputRead1Fastq;
     private String inputRead2Fastq;
     private String externalName;
-    private ReadGroupData readGroupDataForWorkflowRun;
+    //private ReadGroupData readGroupDataForWorkflowRun;
     private String currentTtype;
 
     public STARfusionDecider() {
@@ -100,7 +100,7 @@ public class STARfusionDecider extends OicrDecider {
             return new ReturnValue(ReturnValue.INVALIDPARAMETERS);
         }
 
-        readGroupDataForWorkflowRun = new ReadGroupData(files.get(inputRead1Fastq), files.get(inputRead2Fastq));
+       // readGroupDataForWorkflowRun = new ReadGroupData(files.get(inputRead1Fastq), files.get(inputRead2Fastq));
 
         return super.doFinalCheck(commaSeparatedFilePaths, commaSeparatedParentAccessions);
     }

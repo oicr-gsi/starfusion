@@ -59,7 +59,7 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
 
     // meta-types
     private final static String TXT_METATYPE = "text/plain";
-    private final static String TAR_GZ_METATYPE = "application/tar-gzip";
+    //private final static String TAR_GZ_METATYPE = "application/tar-gzip";
     private static final String FASTQ_GZIP_MIMETYPE = "chemical/seq-na-fastq-gzip";
 
     private void init() {
@@ -151,22 +151,23 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
         this.outDir = this.outputFilenamePrefix + "_output";
 
         Job starJob = runStarFusion();
+        parentJob = starJob;
 
         // Provision .seg, .varscanSomatic_confints_CP.txt, model-fit.tar.gz files
         String fusionPredictionTsv = this.tmpDir + "star-fusion.fusion_predictions.tsv";
         SqwFile fusionTSV = createOutputFile(fusionPredictionTsv, TXT_METATYPE, this.manualOutput);
         fusionTSV.getAnnotations().put("STAR_fusion_prediction_tsv", "STAR_fusion");
-        starJob.addFile(fusionTSV);
+        parentJob.addFile(fusionTSV);
 
         String fusionAbridgedTsv = this.tmpDir + "star-fusion.fusion_predictions.abridged.tsv";
         SqwFile abridgedTSV = createOutputFile(fusionAbridgedTsv, TXT_METATYPE, this.manualOutput);
         abridgedTSV.getAnnotations().put("STAR_fusion_abridged_tsv", "STAR_fusion");
-        starJob.addFile(abridgedTSV);
+        parentJob.addFile(abridgedTSV);
 
         String FFP_coding_effect = this.tmpDir + "star-fusion.fusion_predictions.abridged.coding_effect.tsv";
         SqwFile codingTSV = createOutputFile(FFP_coding_effect, TXT_METATYPE, this.manualOutput);
         codingTSV.getAnnotations().put("STAR_fusion_coding_effect_tsv ", "STAR_fusion");
-        starJob.addFile(codingTSV);
+        parentJob.addFile(codingTSV);
     }
 
     private Job runStarFusion() {
