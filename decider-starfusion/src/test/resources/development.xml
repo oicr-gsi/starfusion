@@ -2,7 +2,7 @@
 <suite name="StarDeciderTestSuite" parallel="methods" thread-count="${runTestThreads}">
     <test name="Test1">
         <classes>
-            <parameter name="testDefinition" value="/StarDeciderTests.json"/>
+            <parameter name="testDefinition" value="/starfusionTests.json"/>
             <class name="ca.on.oicr.pde.testing.DeciderRunTestFactory"/>
         </classes>
     </test>
