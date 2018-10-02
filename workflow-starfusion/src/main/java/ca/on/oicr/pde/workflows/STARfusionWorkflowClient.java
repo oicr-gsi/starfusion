@@ -50,7 +50,7 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
     private String bin;
 
     //ref Data
-    private String refGenome;
+    private String refGenomeDir;
 
     private boolean manualOutput;
     private static final Logger logger = Logger.getLogger(STARfusionWorkflowClient.class.getName());
@@ -100,7 +100,7 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
          
 
             // ref fasta
-            refGenome = getProperty("ref_genome");
+            refGenomeDir = getProperty("ref_genome_dir");
 
             manualOutput = Boolean.parseBoolean(getProperty("manual_output"));
             queue = getOptionalProperty("queue", "");
@@ -179,7 +179,7 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
         cmd.addArgument(this.starFusionExport);
         cmd.addArgument(this.tabixExport);
         cmd.addArgument("STAR-Fusion");
-        cmd.addArgument("--genome_lib_dir " + this.refGenome);
+        cmd.addArgument("--genome_lib_dir " + this.refGenomeDir);
         cmd.addArgument("--left_fq " + getFiles().get("read1").getProvisionedPath());
         cmd.addArgument("--right_fq " + getFiles().get("read2").getProvisionedPath());
         cmd.addArgument("--examine_coding_effect");
