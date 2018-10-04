@@ -20,7 +20,7 @@ public class STARfusionDecider extends OicrDecider {
     private String refGenomeDir = "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0/genomes/GRCh37_v19_CTAT_lib_Feb092018/ctat_genome_lib_build_dir";
 
 
-    private Set<String> allowedTemplateTypes;
+    private String templateType = "WT";
 
     private String read1;
     private String read2;
@@ -32,7 +32,7 @@ public class STARfusionDecider extends OicrDecider {
         parser.accepts("ini-file", "Optional: the location of the INI file.").withRequiredArg();
         parser.accepts("starfusion-mem", "Optional: MiXCR allocated memory Gb, default is 24.").withRequiredArg();
         parser.accepts("ref-genome-dir").withOptionalArg();
-        parser.accepts("template-type", "Optional: limit the run to only specified template type(s) (comma separated list).").withRequiredArg();
+        parser.accepts("template-type", "Optional: limit the run to only specified template type(s). Default is WT").withOptionalArg();
 
     }
 
@@ -48,8 +48,11 @@ public class STARfusionDecider extends OicrDecider {
             this.starfusionMemory = options.valueOf("starfusion-mem").toString();
         }
         if (this.options.has("template-type")) {
-            String templateTypeArg = this.options.valueOf("template-type").toString();
-            allowedTemplateTypes = Sets.newHashSet(templateTypeArg.split(","));
+            templateType = this.options.valueOf("template-type").toString();
+            //templateType = Sets.newHashSet(templateTypeArg.split(","));
+            if (!templateType.equals("WT")){
+                Log.warn("Workflow may fail for templae type " + templateType + "; Template type must be WT");
+            }
         }
         if(this.options.has("ref-genome-dir")){
             this.refGenomeDir = options.valueOf("ref-genome-dir").toString();
@@ -107,9 +110,9 @@ public class STARfusionDecider extends OicrDecider {
     protected boolean checkFileDetails(ReturnValue returnValue, FileMetadata fm) {
         Log.debug("CHECK FILE DETAILS:" + fm);
 
-        if (allowedTemplateTypes != null) {
+        if (templateType != null) {
             String currentTemplateType = returnValue.getAttribute(FindAllTheFiles.Header.SAMPLE_TAG_PREFIX.getTitle() + "geo_library_source_template_type");
-            if (!allowedTemplateTypes.contains(currentTemplateType)) {
+            if (!templateType.equals(currentTemplateType)) {
                 return false;
             }
         }
