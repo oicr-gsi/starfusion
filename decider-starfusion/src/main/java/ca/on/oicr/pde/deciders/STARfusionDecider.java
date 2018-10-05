@@ -15,7 +15,7 @@ import net.sourceforge.seqware.common.util.Log;
  */
 public class STARfusionDecider extends OicrDecider {
 
-    private String starfusionMemory = "24";
+    private String starfusionMemory = "64"; 
     private String queue = "";
     private String refGenomeDir = "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0/genomes/GRCh37_v19_CTAT_lib_Feb092018/ctat_genome_lib_build_dir";
 
@@ -30,7 +30,7 @@ public class STARfusionDecider extends OicrDecider {
     public STARfusionDecider() {
         super();
         parser.accepts("ini-file", "Optional: the location of the INI file.").withRequiredArg();
-        parser.accepts("starfusion-mem", "Optional: MiXCR allocated memory Gb, default is 24.").withRequiredArg();
+        parser.accepts("starfusion-mem", "Optional: StarFusion allocated memory Gb, default is 64.").withRequiredArg();
         parser.accepts("ref-genome-dir").withOptionalArg();
         parser.accepts("template-type", "Optional: limit the run to only specified template type(s). Default is WT").withOptionalArg();
 

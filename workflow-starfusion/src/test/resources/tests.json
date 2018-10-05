@@ -14,6 +14,14 @@
                 "input_read2_fastq": "/.mounts/labs/PDE/data/starfusions_test/test.R2.fq.gz",
                 "external_name": "starfusion_v1"
             }
+        },
+        {
+            "id": "complete_fastq_test",
+            "parameters": {
+                "input_read1_fastq": "/.mounts/labs/PDE/data/testdata/RNA/fastq/TGL_star/TGL01_0043_nn_M_PE_317_WT_171116_NB551051_0034_AHKTL5AFXX_GCCAAT_1.R1.10000.fastq.gz,/.mounts/labs/PDE/data/testdata/RNA/fastq/TGL_star/TGL01_0043_nn_M_PE_317_WT_171116_NB551056_0031_AHKNYWAFXX_GCCAAT_1.R1.10000.fastq.gz",
+                "input_read2_fastq": "/.mounts/labs/PDE/data/testdata/RNA/fastq/TGL_star/TGL01_0043_nn_M_PE_317_WT_171116_NB551051_0034_AHKTL5AFXX_GCCAAT_1.R2.10000.fastq.gz,/.mounts/labs/PDE/data/testdata/RNA/fastq/TGL_star/TGL01_0043_nn_M_PE_317_WT_171116_NB551056_0031_AHKNYWAFXX_GCCAAT_1.R2.10000.fastq.gz",
+                "external_name": "TGL01_0043_nn_M_PE_317_WT_test"
+            }
         }
     ]
 }

@@ -1,6 +1,9 @@
 package ca.on.oicr.pde.workflows;
 
 import ca.on.oicr.pde.utilities.workflows.OicrWorkflow;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 import net.sourceforge.seqware.pipeline.workflowV2.model.Command;
@@ -44,7 +47,7 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
     private String starFusionExport;
 
     //Memory allocation
-    private Integer starFusionMem;
+    private Integer starFusionMem; // in MBs
 
     //path to bin
     private String bin;
@@ -59,6 +62,7 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
 
     // meta-types
     private final static String TXT_METATYPE = "text/plain";
+    private final static String BAM_METATYPE = "application/bam";
     //private final static String TAR_GZ_METATYPE = "application/tar-gzip";
     private static final String FASTQ_GZIP_MIMETYPE = "chemical/seq-na-fastq-gzip";
 
@@ -152,22 +156,71 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
 
         Job starJob = runStarFusion();
         parentJob = starJob;
+        
+        // file for provisioning out
+        HashMap<String, String> provOut = new HashMap<String, String> (){{
+            put("junction", "std.Chimeric.out.junction");
+            put("bam", "std.STAR.bam");
+            put("prediction_tsv", "star-fusion.fusion_predictions.tsv");
+            put("abridged_tsv", "star-fusion.fusion_predictions.abridged.tsv");
+            put("coding_effect_tsv", "star-fusion.fusion_predictions.abridged.coding_effect.tsv");
+        }};
+        
+        
+        Job renameOutputs = copyOutputs(provOut);
+        renameOutputs.addParent(parentJob);
+        parentJob = renameOutputs;
 
-        // Provision .seg, .varscanSomatic_confints_CP.txt, model-fit.tar.gz files
-        String fusionPredictionTsv = this.tmpDir + "star-fusion.fusion_predictions.tsv";
-        SqwFile fusionTSV = createOutputFile(fusionPredictionTsv, TXT_METATYPE, this.manualOutput);
-        fusionTSV.getAnnotations().put("STAR_fusion_prediction_tsv", "STAR_fusion");
-        parentJob.addFile(fusionTSV);
+        
+        HashMap<String, String> metaTypeMap = new HashMap<String, String>(){{
+            put("junction", TXT_METATYPE);
+            put("bam", BAM_METATYPE);
+            put("prediction_tsv", TXT_METATYPE);
+            put("abridged_tsv", TXT_METATYPE);
+            put("coding_effect_tsv", TXT_METATYPE);
+        }};
+        
+        List<String> keys = new ArrayList<>(provOut.keySet());
+        for (String k : keys){
+            String provFile = this.dataDir + this.outputFilenamePrefix + "." + provOut.get(k);
+            SqwFile provSqwFile = createOutputFile(provFile, metaTypeMap.get(k), this.manualOutput);
+            provSqwFile.getAnnotations().put("STAR_fusion_" + k , "STAR_fusion");
+            parentJob.addFile(provSqwFile);
+        }
+        
+        String fusionInspectorFile = this.dataDir + this.outputFilenamePrefix + "_FusionInspector-validate.tar.gz";
+        SqwFile fusionInspectorSqw = createOutputFile(fusionInspectorFile, "application/tar-gzip", this.manualOutput);
+        fusionInspectorSqw.getAnnotations().put("STAR_fusion_FusionInspector" , "STAR_fusion");
+        parentJob.addFile(fusionInspectorSqw);
+        
+        
+//        // bam file 
+//        String fusionBamFile = this.tmpDir + this.outputFilenamePrefix + ".std.STAR.bam";
+//        SqwFile fusionBam = createOutputFile(fusionBamFile, BAM_METATYPE, this.manualOutput);
+//        fusionBam.getAnnotations().put("STAR_fusion_bam", "STAR_fusion");
+//        parentJob.addFile(fusionBam);
+//        
+//        // junction
+//        String fusionJunctionFile = this.tmpDir + this.outputFilenamePrefix + ".std.Chimeric.out.junction";
+//        SqwFile fusionJunction = createOutputFile(fusionBamFile, TXT_METATYPE, this.manualOutput);
+//        fusionJunction.getAnnotations().put("STAR_fusion_bam", "STAR_fusion");
+//        parentJob.addFile(fusionJunction);
+//        
+//        
+//        String fusionPredictionTsv = this.tmpDir + this.outputFilenamePrefix + ".star-fusion.fusion_predictions.tsv";
+//        SqwFile fusionTSV = createOutputFile(fusionPredictionTsv, TXT_METATYPE, this.manualOutput);
+//        fusionTSV.getAnnotations().put("STAR_fusion_prediction_tsv", "STAR_fusion");
+//        parentJob.addFile(fusionTSV);
+//
+//        String fusionAbridgedTsv = this.tmpDir + this.outputFilenamePrefix + ".star-fusion.fusion_predictions.abridged.tsv";
+//        SqwFile abridgedTSV = createOutputFile(fusionAbridgedTsv, TXT_METATYPE, this.manualOutput);
+//        abridgedTSV.getAnnotations().put("STAR_fusion_abridged_tsv", "STAR_fusion");
+//        parentJob.addFile(abridgedTSV);
 
-        String fusionAbridgedTsv = this.tmpDir + "star-fusion.fusion_predictions.abridged.tsv";
-        SqwFile abridgedTSV = createOutputFile(fusionAbridgedTsv, TXT_METATYPE, this.manualOutput);
-        abridgedTSV.getAnnotations().put("STAR_fusion_abridged_tsv", "STAR_fusion");
-        parentJob.addFile(abridgedTSV);
-
-        String FFP_coding_effect = this.tmpDir + "star-fusion.fusion_predictions.abridged.coding_effect.tsv";
-        SqwFile codingTSV = createOutputFile(FFP_coding_effect, TXT_METATYPE, this.manualOutput);
-        codingTSV.getAnnotations().put("STAR_fusion_coding_effect_tsv ", "STAR_fusion");
-        parentJob.addFile(codingTSV);
+//        String FFP_coding_effect = this.tmpDir + this.outputFilenamePrefix + ".star-fusion.fusion_predictions.abridged.coding_effect.tsv";
+//        SqwFile codingTSV = createOutputFile(FFP_coding_effect, TXT_METATYPE, this.manualOutput);
+//        codingTSV.getAnnotations().put("STAR_fusion_coding_effect_tsv ", "STAR_fusion");
+//        parentJob.addFile(codingTSV);
     }
 
     private Job runStarFusion() {
@@ -188,5 +241,20 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
         starJob.setMaxMemory(Integer.toString(starFusionMem * 1024));
         starJob.setQueue(queue);
         return starJob;
+    }
+    
+    private Job copyOutputs(HashMap<String, String> provOut) {
+        List<String> keys = new ArrayList<>(provOut.keySet());
+        Job copyPaths = getWorkflow().createBashJob("copyoutputsjob");      
+        Command cmd = copyPaths.getCommand();
+        for (String key : keys){
+            String oldFileName = this.tmpDir + provOut.get(key);
+            String newFileName = this.dataDir + this.outputFilenamePrefix + "." + provOut.get(key);
+            cmd.addArgument("cp " + oldFileName + " " + newFileName);
+        }
+        cmd.addArgument("tar -xcvf " + this.dataDir + this.outputFilenamePrefix + "_FusionInspector-validate.tar.gz " + this.tmpDir + "FusionInspector-validate");
+        copyPaths.setMaxMemory(Integer.toString(starFusionMem * 1024));
+        copyPaths.setQueue(queue);
+        return copyPaths;
     }
 }
