@@ -250,9 +250,9 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
         for (String key : keys){
             String oldFileName = this.tmpDir + provOut.get(key);
             String newFileName = this.dataDir + this.outputFilenamePrefix + "." + provOut.get(key);
-            cmd.addArgument("cp " + oldFileName + " " + newFileName);
+            cmd.addArgument("cp " + oldFileName + " " + newFileName + ";");
         }
-        cmd.addArgument("tar -xcvf " + this.dataDir + this.outputFilenamePrefix + "_FusionInspector-validate.tar.gz " + this.tmpDir + "FusionInspector-validate");
+        cmd.addArgument("tar -xcvf " + this.dataDir + this.outputFilenamePrefix + "_FusionInspector-validate.tar.gz " + this.tmpDir + "FusionInspector-validate;");
         copyPaths.setMaxMemory(Integer.toString(starFusionMem * 1024));
         copyPaths.setQueue(queue);
         return copyPaths;
