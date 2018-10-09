@@ -47,7 +47,7 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
     private String starFusionExport;
 
     //Memory allocation
-    private Integer starFusionMem; // in MBs
+    private Integer starFusionMem; // in GBs
 
     //path to bin
     private String bin;
