@@ -247,7 +247,7 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
         Command cmd = copyPaths.getCommand();
         for (String k : keys){
             cmd.addArgument("cp " 
-                    + this.tmpDir + this.outputFilenamePrefix + "." + provOut.get(k) + " " 
+                    + this.tmpDir + "star-fusion" + "." + provOut.get(k) + " " 
                     + this.dataDir + this.outputFilenamePrefix + "." + provOut.get(k) + ";\n");
         }
         cmd.addArgument("tar -xcvf " + this.dataDir + this.outputFilenamePrefix + "_STARFusion_results.tar.gz " + this.tmpDir + ";");
