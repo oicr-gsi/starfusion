@@ -18,6 +18,7 @@ public class STARfusionDecider extends OicrDecider {
     private String starfusionMemory = "64"; 
     private String queue = "";
     private String refGenomeDir = "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0/genomes/GRCh37_v19_CTAT_lib_Feb092018/ctat_genome_lib_build_dir";
+    private String fusionInspect = "validate";
 
 
     private String templateType = "WT";
@@ -33,6 +34,7 @@ public class STARfusionDecider extends OicrDecider {
         parser.accepts("starfusion-mem", "Optional: StarFusion allocated memory Gb, default is 64.").withRequiredArg();
         parser.accepts("ref-genome-dir").withOptionalArg();
         parser.accepts("template-type", "Optional: limit the run to only specified template type(s). Default is WT").withOptionalArg();
+        parser.accepts("fusion-inspect", "Optional: FusionInspector option (validate or inspect). Default is validate").withOptionalArg();
 
     }
 
@@ -43,7 +45,6 @@ public class STARfusionDecider extends OicrDecider {
         this.setHeadersToGroupBy(Arrays.asList(FindAllTheFiles.Header.IUS_SWA));
 
         //allows anything defined on the command line to override the defaults here.
-       //mixcr
         if (this.options.has("starfusion-mem")) {
             this.starfusionMemory = options.valueOf("starfusion-mem").toString();
         }
@@ -56,6 +57,9 @@ public class STARfusionDecider extends OicrDecider {
         }
         if(this.options.has("ref-genome-dir")){
             this.refGenomeDir = options.valueOf("ref-genome-dir").toString();
+        }
+        if(this.options.has("fusion-inspect")){
+            this.fusionInspect = options.valueOf("fusion-inspect").toString();
         }
         ReturnValue val = super.init();
         return val;

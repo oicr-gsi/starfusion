@@ -45,6 +45,9 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
     private String starExport;
     private String samExport;
     private String starFusionExport;
+    
+    // program opt
+    private String fusionInspect;
 
     //Memory allocation
     private Integer starFusionMem; // in GBs
@@ -78,6 +81,9 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
 
             //Ext id
             outputFilenamePrefix = getProperty("external_name");
+            
+            // fusion inspect
+            fusionInspect = getProperty("fusion_inspect");
 
             // Tools
             perl = getProperty("perl");
@@ -171,8 +177,8 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
 
         
         HashMap<String, String> metaTypeMap = new HashMap<String, String>(){{
-            put("junction", TXT_METATYPE);
-            put("bam", BAM_METATYPE);
+//            put("junction", TXT_METATYPE);
+//            put("bam", BAM_METATYPE);
             put("prediction_tsv", TXT_METATYPE);
             put("abridged_tsv", TXT_METATYPE);
             put("coding_effect_tsv", TXT_METATYPE);
@@ -234,7 +240,7 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
         cmd.addArgument("--left_fq " + getFiles().get("read1").getProvisionedPath());
         cmd.addArgument("--right_fq " + getFiles().get("read2").getProvisionedPath());
         cmd.addArgument("--examine_coding_effect");
-        cmd.addArgument("--FusionInspector validate");
+        cmd.addArgument("--FusionInspector " + this.fusionInspect);
         cmd.addArgument("--output_dir " + this.tmpDir);
         starJob.setMaxMemory(Integer.toString(starFusionMem * 1024));
         starJob.setQueue(queue);
@@ -247,7 +253,7 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
         Command cmd = copyPaths.getCommand();
         for (String k : keys){
             cmd.addArgument("cp " 
-                    + this.tmpDir + "star-fusion" + "." + provOut.get(k) + " " 
+                    + this.tmpDir + provOut.get(k) + " " 
                     + this.dataDir + this.outputFilenamePrefix + "." + provOut.get(k) + ";\n");
         }
         cmd.addArgument("tar -xcvf " + this.dataDir + this.outputFilenamePrefix + "_STARFusion_results.tar.gz " + this.tmpDir + ";");
