@@ -246,7 +246,9 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
         Job copyPaths = getWorkflow().createBashJob("copyoutputsjob");      
         Command cmd = copyPaths.getCommand();
         for (String k : keys){
-            cmd.addArgument("cp " + this.tmpDir + this.outputFilenamePrefix + "." + provOut.get(k) + " " + this.dataDir + this.outputFilenamePrefix + "." + provOut.get(k));
+            cmd.addArgument("cp " 
+                    + this.tmpDir + this.outputFilenamePrefix + "." + provOut.get(k) + " " 
+                    + this.dataDir + this.outputFilenamePrefix + "." + provOut.get(k) + ";\n");
         }
         cmd.addArgument("tar -xcvf " + this.dataDir + this.outputFilenamePrefix + "_STARFusion_results.tar.gz " + this.tmpDir + ";");
         copyPaths.setMaxMemory(Integer.toString(starFusionMem * 1024));
