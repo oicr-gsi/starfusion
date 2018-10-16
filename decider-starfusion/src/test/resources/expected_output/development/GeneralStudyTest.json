@@ -16,6 +16,7 @@
   "workflowRuns" : [ {
     "workflowIni" : {
       "external_name" : "TGL07_0001_Lu_M_PE_292_WT",
+      "fusion_inspect" : "validate",
       "input_read1_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/26505478/SWID_11105601_TGL07_0001_Lu_M_PE_292_WT_171121_171122_NB551051_0036_AHLKN7AFXX_CGATGT_L001_R1_001.fastq.gz",
       "input_read2_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/26505478/SWID_11105601_TGL07_0001_Lu_M_PE_292_WT_171121_171122_NB551051_0036_AHLKN7AFXX_CGATGT_L001_R2_001.fastq.gz",
       "manual_output" : "false",
@@ -26,7 +27,7 @@
       "samtools" : "/oicr/local/analysis/sw//samtools/samtools-1.2",
       "star" : "/oicr/local/analysis/sw/star/STAR-2.6.0c/bin/Linux_x86_64_static",
       "starfusion" : "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0",
-      "starfusion_mem" : "24",
+      "starfusion_mem" : "64",
       "tabix" : "/oicr/local/analysis/sw/tabix/tabix-0.2.6",
       "tmp_dir" : "tmp"
     },
@@ -105,6 +106,7 @@
   }, {
     "workflowIni" : {
       "external_name" : "TGL07_0001_Lu_M_PE_292_WT",
+      "fusion_inspect" : "validate",
       "input_read1_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/16566667/SWID_11105589_TGL07_0001_Lu_M_PE_292_WT_171121_171122_NB551056_0033_AHKMWKAFXX_CGATGT_L001_R1_001.fastq.gz",
       "input_read2_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/16566667/SWID_11105589_TGL07_0001_Lu_M_PE_292_WT_171121_171122_NB551056_0033_AHKMWKAFXX_CGATGT_L001_R2_001.fastq.gz",
       "manual_output" : "false",
@@ -115,7 +117,7 @@
       "samtools" : "/oicr/local/analysis/sw//samtools/samtools-1.2",
       "star" : "/oicr/local/analysis/sw/star/STAR-2.6.0c/bin/Linux_x86_64_static",
       "starfusion" : "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0",
-      "starfusion_mem" : "24",
+      "starfusion_mem" : "64",
       "tabix" : "/oicr/local/analysis/sw/tabix/tabix-0.2.6",
       "tmp_dir" : "tmp"
     },
@@ -194,6 +196,7 @@
   }, {
     "workflowIni" : {
       "external_name" : "TGL07_0002_Sb_P_PE_294_WT",
+      "fusion_inspect" : "validate",
       "input_read1_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/42345367/SWID_11119230_TGL07_0002_Sb_P_PE_294_WT_171121_171123_NB551051_0037_AHL5HNAFXX_TGACCA_L001_R1_001.fastq.gz",
       "input_read2_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/42345367/SWID_11119230_TGL07_0002_Sb_P_PE_294_WT_171121_171123_NB551051_0037_AHL5HNAFXX_TGACCA_L001_R2_001.fastq.gz",
       "manual_output" : "false",
@@ -204,7 +207,7 @@
       "samtools" : "/oicr/local/analysis/sw//samtools/samtools-1.2",
       "star" : "/oicr/local/analysis/sw/star/STAR-2.6.0c/bin/Linux_x86_64_static",
       "starfusion" : "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0",
-      "starfusion_mem" : "24",
+      "starfusion_mem" : "64",
       "tabix" : "/oicr/local/analysis/sw/tabix/tabix-0.2.6",
       "tmp_dir" : "tmp"
     },
@@ -283,6 +286,7 @@
   }, {
     "workflowIni" : {
       "external_name" : "TGL07_0002_Sb_P_PE_294_WT",
+      "fusion_inspect" : "validate",
       "input_read1_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/58859623/SWID_11119242_TGL07_0002_Sb_P_PE_294_WT_171121_171123_NB551056_0034_AHL5HTAFXX_TGACCA_L001_R1_001.fastq.gz",
       "input_read2_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/58859623/SWID_11119242_TGL07_0002_Sb_P_PE_294_WT_171121_171123_NB551056_0034_AHL5HTAFXX_TGACCA_L001_R2_001.fastq.gz",
       "manual_output" : "false",
@@ -293,7 +297,7 @@
       "samtools" : "/oicr/local/analysis/sw//samtools/samtools-1.2",
       "star" : "/oicr/local/analysis/sw/star/STAR-2.6.0c/bin/Linux_x86_64_static",
       "starfusion" : "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0",
-      "starfusion_mem" : "24",
+      "starfusion_mem" : "64",
       "tabix" : "/oicr/local/analysis/sw/tabix/tabix-0.2.6",
       "tmp_dir" : "tmp"
     },
@@ -372,6 +376,7 @@
   }, {
     "workflowIni" : {
       "external_name" : "TGL07_0003_Ut_P_PE_272_WT",
+      "fusion_inspect" : "validate",
       "input_read1_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/42345367/SWID_11119232_TGL07_0003_Ut_P_PE_272_WT_171121_171123_NB551051_0037_AHL5HNAFXX_CAGATC_L001_R1_001.fastq.gz",
       "input_read2_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/42345367/SWID_11119232_TGL07_0003_Ut_P_PE_272_WT_171121_171123_NB551051_0037_AHL5HNAFXX_CAGATC_L001_R2_001.fastq.gz",
       "manual_output" : "false",
@@ -382,7 +387,7 @@
       "samtools" : "/oicr/local/analysis/sw//samtools/samtools-1.2",
       "star" : "/oicr/local/analysis/sw/star/STAR-2.6.0c/bin/Linux_x86_64_static",
       "starfusion" : "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0",
-      "starfusion_mem" : "24",
+      "starfusion_mem" : "64",
       "tabix" : "/oicr/local/analysis/sw/tabix/tabix-0.2.6",
       "tmp_dir" : "tmp"
     },
@@ -461,6 +466,7 @@
   }, {
     "workflowIni" : {
       "external_name" : "TGL07_0003_Ut_P_PE_272_WT",
+      "fusion_inspect" : "validate",
       "input_read1_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/58859623/SWID_11119244_TGL07_0003_Ut_P_PE_272_WT_171121_171123_NB551056_0034_AHL5HTAFXX_CAGATC_L001_R1_001.fastq.gz",
       "input_read2_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/58859623/SWID_11119244_TGL07_0003_Ut_P_PE_272_WT_171121_171123_NB551056_0034_AHL5HTAFXX_CAGATC_L001_R2_001.fastq.gz",
       "manual_output" : "false",
@@ -471,7 +477,7 @@
       "samtools" : "/oicr/local/analysis/sw//samtools/samtools-1.2",
       "star" : "/oicr/local/analysis/sw/star/STAR-2.6.0c/bin/Linux_x86_64_static",
       "starfusion" : "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0",
-      "starfusion_mem" : "24",
+      "starfusion_mem" : "64",
       "tabix" : "/oicr/local/analysis/sw/tabix/tabix-0.2.6",
       "tmp_dir" : "tmp"
     },
@@ -550,6 +556,7 @@
   }, {
     "workflowIni" : {
       "external_name" : "TGL07_0004_Ov_P_PE_289_WT",
+      "fusion_inspect" : "validate",
       "input_read1_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/42345367/SWID_11119234_TGL07_0004_Ov_P_PE_289_WT_171121_171123_NB551051_0037_AHL5HNAFXX_CCGTCC_L001_R1_001.fastq.gz",
       "input_read2_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/42345367/SWID_11119234_TGL07_0004_Ov_P_PE_289_WT_171121_171123_NB551051_0037_AHL5HNAFXX_CCGTCC_L001_R2_001.fastq.gz",
       "manual_output" : "false",
@@ -560,7 +567,7 @@
       "samtools" : "/oicr/local/analysis/sw//samtools/samtools-1.2",
       "star" : "/oicr/local/analysis/sw/star/STAR-2.6.0c/bin/Linux_x86_64_static",
       "starfusion" : "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0",
-      "starfusion_mem" : "24",
+      "starfusion_mem" : "64",
       "tabix" : "/oicr/local/analysis/sw/tabix/tabix-0.2.6",
       "tmp_dir" : "tmp"
     },
@@ -639,6 +646,7 @@
   }, {
     "workflowIni" : {
       "external_name" : "TGL07_0004_Ov_P_PE_289_WT",
+      "fusion_inspect" : "validate",
       "input_read1_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/58859623/SWID_11119246_TGL07_0004_Ov_P_PE_289_WT_171121_171123_NB551056_0034_AHL5HTAFXX_CCGTCC_L001_R1_001.fastq.gz",
       "input_read2_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/58859623/SWID_11119246_TGL07_0004_Ov_P_PE_289_WT_171121_171123_NB551056_0034_AHL5HTAFXX_CCGTCC_L001_R2_001.fastq.gz",
       "manual_output" : "false",
@@ -649,7 +657,7 @@
       "samtools" : "/oicr/local/analysis/sw//samtools/samtools-1.2",
       "star" : "/oicr/local/analysis/sw/star/STAR-2.6.0c/bin/Linux_x86_64_static",
       "starfusion" : "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0",
-      "starfusion_mem" : "24",
+      "starfusion_mem" : "64",
       "tabix" : "/oicr/local/analysis/sw/tabix/tabix-0.2.6",
       "tmp_dir" : "tmp"
     },
@@ -728,6 +736,7 @@
   }, {
     "workflowIni" : {
       "external_name" : "TGL07_0005_Om_M_PE_303_WT",
+      "fusion_inspect" : "validate",
       "input_read1_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/57268142/SWID_11780631_TGL07_0005_Om_M_PE_303_WT_171121_171129_NB551051_0040_AH53W3BGX5_ATCACG_L001_R1_001.fastq.gz",
       "input_read2_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/57268142/SWID_11780631_TGL07_0005_Om_M_PE_303_WT_171121_171129_NB551051_0040_AH53W3BGX5_ATCACG_L001_R2_001.fastq.gz",
       "manual_output" : "false",
@@ -738,7 +747,7 @@
       "samtools" : "/oicr/local/analysis/sw//samtools/samtools-1.2",
       "star" : "/oicr/local/analysis/sw/star/STAR-2.6.0c/bin/Linux_x86_64_static",
       "starfusion" : "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0",
-      "starfusion_mem" : "24",
+      "starfusion_mem" : "64",
       "tabix" : "/oicr/local/analysis/sw/tabix/tabix-0.2.6",
       "tmp_dir" : "tmp"
     },
@@ -817,6 +826,7 @@
   }, {
     "workflowIni" : {
       "external_name" : "TGL07_0006_Lv_M_PE_288_WT",
+      "fusion_inspect" : "validate",
       "input_read1_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/57268142/SWID_11780633_TGL07_0006_Lv_M_PE_288_WT_171121_171129_NB551051_0040_AH53W3BGX5_ACTTGA_L001_R1_001.fastq.gz",
       "input_read2_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/57268142/SWID_11780633_TGL07_0006_Lv_M_PE_288_WT_171121_171129_NB551051_0040_AH53W3BGX5_ACTTGA_L001_R2_001.fastq.gz",
       "manual_output" : "false",
@@ -827,7 +837,7 @@
       "samtools" : "/oicr/local/analysis/sw//samtools/samtools-1.2",
       "star" : "/oicr/local/analysis/sw/star/STAR-2.6.0c/bin/Linux_x86_64_static",
       "starfusion" : "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0",
-      "starfusion_mem" : "24",
+      "starfusion_mem" : "64",
       "tabix" : "/oicr/local/analysis/sw/tabix/tabix-0.2.6",
       "tmp_dir" : "tmp"
     },
@@ -906,6 +916,7 @@
   }, {
     "workflowIni" : {
       "external_name" : "TGL07_0007_Bn_M_PE_304_WT",
+      "fusion_inspect" : "validate",
       "input_read1_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/57268142/SWID_11780635_TGL07_0007_Bn_M_PE_304_WT_171121_171129_NB551051_0040_AH53W3BGX5_TAGCTT_L001_R1_001.fastq.gz",
       "input_read2_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/57268142/SWID_11780635_TGL07_0007_Bn_M_PE_304_WT_171121_171129_NB551051_0040_AH53W3BGX5_TAGCTT_L001_R2_001.fastq.gz",
       "manual_output" : "false",
@@ -916,7 +927,7 @@
       "samtools" : "/oicr/local/analysis/sw//samtools/samtools-1.2",
       "star" : "/oicr/local/analysis/sw/star/STAR-2.6.0c/bin/Linux_x86_64_static",
       "starfusion" : "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0",
-      "starfusion_mem" : "24",
+      "starfusion_mem" : "64",
       "tabix" : "/oicr/local/analysis/sw/tabix/tabix-0.2.6",
       "tmp_dir" : "tmp"
     },
@@ -995,6 +1006,7 @@
   }, {
     "workflowIni" : {
       "external_name" : "TGL07_0008_Sk_P_PE_280_WT",
+      "fusion_inspect" : "validate",
       "input_read1_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/57268142/SWID_11780637_TGL07_0008_Sk_P_PE_280_WT_171121_171129_NB551051_0040_AH53W3BGX5_GGCTAC_L001_R1_001.fastq.gz",
       "input_read2_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/57268142/SWID_11780637_TGL07_0008_Sk_P_PE_280_WT_171121_171129_NB551051_0040_AH53W3BGX5_GGCTAC_L001_R2_001.fastq.gz",
       "manual_output" : "false",
@@ -1005,7 +1017,7 @@
       "samtools" : "/oicr/local/analysis/sw//samtools/samtools-1.2",
       "star" : "/oicr/local/analysis/sw/star/STAR-2.6.0c/bin/Linux_x86_64_static",
       "starfusion" : "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0",
-      "starfusion_mem" : "24",
+      "starfusion_mem" : "64",
       "tabix" : "/oicr/local/analysis/sw/tabix/tabix-0.2.6",
       "tmp_dir" : "tmp"
     },
@@ -1084,6 +1096,7 @@
   }, {
     "workflowIni" : {
       "external_name" : "TGL07_0009_Bl_P_PE_293_WT",
+      "fusion_inspect" : "validate",
       "input_read1_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/35452652/SWID_11780725_TGL07_0009_Bl_P_PE_293_WT_171121_171129_NB551056_0037_AH557VBGX5_TTAGGC_L001_R1_001.fastq.gz",
       "input_read2_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/35452652/SWID_11780725_TGL07_0009_Bl_P_PE_293_WT_171121_171129_NB551056_0037_AH557VBGX5_TTAGGC_L001_R2_001.fastq.gz",
       "manual_output" : "false",
@@ -1094,7 +1107,7 @@
       "samtools" : "/oicr/local/analysis/sw//samtools/samtools-1.2",
       "star" : "/oicr/local/analysis/sw/star/STAR-2.6.0c/bin/Linux_x86_64_static",
       "starfusion" : "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0",
-      "starfusion_mem" : "24",
+      "starfusion_mem" : "64",
       "tabix" : "/oicr/local/analysis/sw/tabix/tabix-0.2.6",
       "tmp_dir" : "tmp"
     },
@@ -1173,6 +1186,7 @@
   }, {
     "workflowIni" : {
       "external_name" : "TGL07_0010_Sb_M_PE_292_WT",
+      "fusion_inspect" : "validate",
       "input_read1_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/43083632/SWID_11777006_TGL07_0010_Sb_M_PE_292_WT_171122_180319_NB551056_0049_AHLKVJBGX5_TGACCA_L001_R1_001.fastq.gz",
       "input_read2_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/43083632/SWID_11777006_TGL07_0010_Sb_M_PE_292_WT_171122_180319_NB551056_0049_AHLKVJBGX5_TGACCA_L001_R2_001.fastq.gz",
       "manual_output" : "false",
@@ -1183,7 +1197,7 @@
       "samtools" : "/oicr/local/analysis/sw//samtools/samtools-1.2",
       "star" : "/oicr/local/analysis/sw/star/STAR-2.6.0c/bin/Linux_x86_64_static",
       "starfusion" : "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0",
-      "starfusion_mem" : "24",
+      "starfusion_mem" : "64",
       "tabix" : "/oicr/local/analysis/sw/tabix/tabix-0.2.6",
       "tmp_dir" : "tmp"
     },
@@ -1262,6 +1276,7 @@
   }, {
     "workflowIni" : {
       "external_name" : "TGL07_0011_Co_M_PE_277_WT",
+      "fusion_inspect" : "validate",
       "input_read1_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/43083632/SWID_11777008_TGL07_0011_Co_M_PE_277_WT_171122_180319_NB551056_0049_AHLKVJBGX5_CAGATC_L001_R1_001.fastq.gz",
       "input_read2_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/43083632/SWID_11777008_TGL07_0011_Co_M_PE_277_WT_171122_180319_NB551056_0049_AHLKVJBGX5_CAGATC_L001_R2_001.fastq.gz",
       "manual_output" : "false",
@@ -1272,7 +1287,7 @@
       "samtools" : "/oicr/local/analysis/sw//samtools/samtools-1.2",
       "star" : "/oicr/local/analysis/sw/star/STAR-2.6.0c/bin/Linux_x86_64_static",
       "starfusion" : "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0",
-      "starfusion_mem" : "24",
+      "starfusion_mem" : "64",
       "tabix" : "/oicr/local/analysis/sw/tabix/tabix-0.2.6",
       "tmp_dir" : "tmp"
     },
@@ -1351,6 +1366,7 @@
   }, {
     "workflowIni" : {
       "external_name" : "TGL07_0012_Ln_M_PE_274_WT",
+      "fusion_inspect" : "validate",
       "input_read1_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/35452652/SWID_11780727_TGL07_0012_Ln_M_PE_274_WT_171121_171129_NB551056_0037_AH557VBGX5_GATCAG_L001_R1_001.fastq.gz",
       "input_read2_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/35452652/SWID_11780727_TGL07_0012_Ln_M_PE_274_WT_171121_171129_NB551056_0037_AH557VBGX5_GATCAG_L001_R2_001.fastq.gz",
       "manual_output" : "false",
@@ -1361,7 +1377,7 @@
       "samtools" : "/oicr/local/analysis/sw//samtools/samtools-1.2",
       "star" : "/oicr/local/analysis/sw/star/STAR-2.6.0c/bin/Linux_x86_64_static",
       "starfusion" : "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0",
-      "starfusion_mem" : "24",
+      "starfusion_mem" : "64",
       "tabix" : "/oicr/local/analysis/sw/tabix/tabix-0.2.6",
       "tmp_dir" : "tmp"
     },
@@ -1440,6 +1456,7 @@
   }, {
     "workflowIni" : {
       "external_name" : "TGL07_0014_Ce_P_PE_299_WT",
+      "fusion_inspect" : "validate",
       "input_read1_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/35452652/SWID_11780729_TGL07_0014_Ce_P_PE_299_WT_171121_171129_NB551056_0037_AH557VBGX5_CGTACG_L001_R1_001.fastq.gz",
       "input_read2_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/35452652/SWID_11780729_TGL07_0014_Ce_P_PE_299_WT_171121_171129_NB551056_0037_AH557VBGX5_CGTACG_L001_R2_001.fastq.gz",
       "manual_output" : "false",
@@ -1450,7 +1467,7 @@
       "samtools" : "/oicr/local/analysis/sw//samtools/samtools-1.2",
       "star" : "/oicr/local/analysis/sw/star/STAR-2.6.0c/bin/Linux_x86_64_static",
       "starfusion" : "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0",
-      "starfusion_mem" : "24",
+      "starfusion_mem" : "64",
       "tabix" : "/oicr/local/analysis/sw/tabix/tabix-0.2.6",
       "tmp_dir" : "tmp"
     },
@@ -1529,6 +1546,7 @@
   }, {
     "workflowIni" : {
       "external_name" : "TGL07_0015_Um_M_PE_299_WT",
+      "fusion_inspect" : "validate",
       "input_read1_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/35452652/SWID_11780731_TGL07_0015_Um_M_PE_299_WT_171121_171129_NB551056_0037_AH557VBGX5_ATTCCT_L001_R1_001.fastq.gz",
       "input_read2_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/35452652/SWID_11780731_TGL07_0015_Um_M_PE_299_WT_171121_171129_NB551056_0037_AH557VBGX5_ATTCCT_L001_R2_001.fastq.gz",
       "manual_output" : "false",
@@ -1539,7 +1557,7 @@
       "samtools" : "/oicr/local/analysis/sw//samtools/samtools-1.2",
       "star" : "/oicr/local/analysis/sw/star/STAR-2.6.0c/bin/Linux_x86_64_static",
       "starfusion" : "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0",
-      "starfusion_mem" : "24",
+      "starfusion_mem" : "64",
       "tabix" : "/oicr/local/analysis/sw/tabix/tabix-0.2.6",
       "tmp_dir" : "tmp"
     },
@@ -1618,6 +1636,7 @@
   }, {
     "workflowIni" : {
       "external_name" : "TGL07_0016_Om_M_PE_300_WT",
+      "fusion_inspect" : "validate",
       "input_read1_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/43083632/SWID_11777004_TGL07_0016_Om_M_PE_300_WT_171122_180319_NB551056_0049_AHLKVJBGX5_CGATGT_L001_R1_001.fastq.gz",
       "input_read2_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/43083632/SWID_11777004_TGL07_0016_Om_M_PE_300_WT_171122_180319_NB551056_0049_AHLKVJBGX5_CGATGT_L001_R2_001.fastq.gz",
       "manual_output" : "false",
@@ -1628,7 +1647,7 @@
       "samtools" : "/oicr/local/analysis/sw//samtools/samtools-1.2",
       "star" : "/oicr/local/analysis/sw/star/STAR-2.6.0c/bin/Linux_x86_64_static",
       "starfusion" : "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0",
-      "starfusion_mem" : "24",
+      "starfusion_mem" : "64",
       "tabix" : "/oicr/local/analysis/sw/tabix/tabix-0.2.6",
       "tmp_dir" : "tmp"
     },
@@ -1707,6 +1726,7 @@
   }, {
     "workflowIni" : {
       "external_name" : "TGL07_0017_Co_P_PE_290_WT",
+      "fusion_inspect" : "validate",
       "input_read1_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/78059016/SWID_11780519_TGL07_0017_Co_P_PE_290_WT_171121_171123_NB551051_0037_AHL5HNAFXX_ACAGTG_L001_R1_001.fastq.gz",
       "input_read2_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/78059016/SWID_11780519_TGL07_0017_Co_P_PE_290_WT_171121_171123_NB551051_0037_AHL5HNAFXX_ACAGTG_L001_R2_001.fastq.gz",
       "manual_output" : "false",
@@ -1717,7 +1737,7 @@
       "samtools" : "/oicr/local/analysis/sw//samtools/samtools-1.2",
       "star" : "/oicr/local/analysis/sw/star/STAR-2.6.0c/bin/Linux_x86_64_static",
       "starfusion" : "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0",
-      "starfusion_mem" : "24",
+      "starfusion_mem" : "64",
       "tabix" : "/oicr/local/analysis/sw/tabix/tabix-0.2.6",
       "tmp_dir" : "tmp"
     },
@@ -1796,6 +1816,7 @@
   }, {
     "workflowIni" : {
       "external_name" : "TGL07_0017_Co_P_PE_290_WT",
+      "fusion_inspect" : "validate",
       "input_read1_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/84579961/SWID_11780573_TGL07_0017_Co_P_PE_290_WT_171121_171123_NB551056_0034_AHL5HTAFXX_ACAGTG_L001_R1_001.fastq.gz",
       "input_read2_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/84579961/SWID_11780573_TGL07_0017_Co_P_PE_290_WT_171121_171123_NB551056_0034_AHL5HTAFXX_ACAGTG_L001_R2_001.fastq.gz",
       "manual_output" : "false",
@@ -1806,7 +1827,7 @@
       "samtools" : "/oicr/local/analysis/sw//samtools/samtools-1.2",
       "star" : "/oicr/local/analysis/sw/star/STAR-2.6.0c/bin/Linux_x86_64_static",
       "starfusion" : "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0",
-      "starfusion_mem" : "24",
+      "starfusion_mem" : "64",
       "tabix" : "/oicr/local/analysis/sw/tabix/tabix-0.2.6",
       "tmp_dir" : "tmp"
     },
@@ -1885,6 +1906,7 @@
   }, {
     "workflowIni" : {
       "external_name" : "TGL07_0018_Lv_M_PE_269_WT",
+      "fusion_inspect" : "validate",
       "input_read1_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/78898862/SWID_11780811_TGL07_0018_Lv_M_PE_269_WT_171121_180109_NB551056_0039_AH5JC2BGX5_GCCAAT_L001_R1_001.fastq.gz",
       "input_read2_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/78898862/SWID_11780811_TGL07_0018_Lv_M_PE_269_WT_171121_180109_NB551056_0039_AH5JC2BGX5_GCCAAT_L001_R2_001.fastq.gz",
       "manual_output" : "false",
@@ -1895,7 +1917,7 @@
       "samtools" : "/oicr/local/analysis/sw//samtools/samtools-1.2",
       "star" : "/oicr/local/analysis/sw/star/STAR-2.6.0c/bin/Linux_x86_64_static",
       "starfusion" : "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0",
-      "starfusion_mem" : "24",
+      "starfusion_mem" : "64",
       "tabix" : "/oicr/local/analysis/sw/tabix/tabix-0.2.6",
       "tmp_dir" : "tmp"
     },
@@ -1974,6 +1996,7 @@
   }, {
     "workflowIni" : {
       "external_name" : "TGL07_0019_Ut_P_PE_278_WT",
+      "fusion_inspect" : "validate",
       "input_read1_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/35452652/SWID_11780723_TGL07_0019_Ut_P_PE_278_WT_171121_171129_NB551056_0037_AH557VBGX5_CTTGTA_L001_R1_001.fastq.gz",
       "input_read2_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/35452652/SWID_11780723_TGL07_0019_Ut_P_PE_278_WT_171121_171129_NB551056_0037_AH557VBGX5_CTTGTA_L001_R2_001.fastq.gz",
       "manual_output" : "false",
@@ -1984,7 +2007,7 @@
       "samtools" : "/oicr/local/analysis/sw//samtools/samtools-1.2",
       "star" : "/oicr/local/analysis/sw/star/STAR-2.6.0c/bin/Linux_x86_64_static",
       "starfusion" : "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0",
-      "starfusion_mem" : "24",
+      "starfusion_mem" : "64",
       "tabix" : "/oicr/local/analysis/sw/tabix/tabix-0.2.6",
       "tmp_dir" : "tmp"
     },
@@ -2063,6 +2086,7 @@
   }, {
     "workflowIni" : {
       "external_name" : "TGL07_0020_Ag_M_PE_297_WT",
+      "fusion_inspect" : "validate",
       "input_read1_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/57268142/SWID_11780629_TGL07_0020_Ag_M_PE_297_WT_171121_171129_NB551051_0040_AH53W3BGX5_GTGAAA_L001_R1_001.fastq.gz",
       "input_read2_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/57268142/SWID_11780629_TGL07_0020_Ag_M_PE_297_WT_171121_171129_NB551051_0040_AH53W3BGX5_GTGAAA_L001_R2_001.fastq.gz",
       "manual_output" : "false",
@@ -2073,7 +2097,7 @@
       "samtools" : "/oicr/local/analysis/sw//samtools/samtools-1.2",
       "star" : "/oicr/local/analysis/sw/star/STAR-2.6.0c/bin/Linux_x86_64_static",
       "starfusion" : "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0",
-      "starfusion_mem" : "24",
+      "starfusion_mem" : "64",
       "tabix" : "/oicr/local/analysis/sw/tabix/tabix-0.2.6",
       "tmp_dir" : "tmp"
     },

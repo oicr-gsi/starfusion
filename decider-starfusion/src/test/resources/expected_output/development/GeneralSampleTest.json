@@ -16,6 +16,7 @@
   "workflowRuns" : [ {
     "workflowIni" : {
       "external_name" : "TGL07_0008_Sk_P_PE_280_WT",
+      "fusion_inspect" : "validate",
       "input_read1_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/57268142/SWID_11780637_TGL07_0008_Sk_P_PE_280_WT_171121_171129_NB551051_0040_AH53W3BGX5_GGCTAC_L001_R1_001.fastq.gz",
       "input_read2_fastq" : "/.mounts/labs/TGL/production2/seqware-results/CASAVA_2.9.1/57268142/SWID_11780637_TGL07_0008_Sk_P_PE_280_WT_171121_171129_NB551051_0040_AH53W3BGX5_GGCTAC_L001_R2_001.fastq.gz",
       "manual_output" : "false",
@@ -26,7 +27,7 @@
       "samtools" : "/oicr/local/analysis/sw//samtools/samtools-1.2",
       "star" : "/oicr/local/analysis/sw/star/STAR-2.6.0c/bin/Linux_x86_64_static",
       "starfusion" : "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0",
-      "starfusion_mem" : "24",
+      "starfusion_mem" : "64",
       "tabix" : "/oicr/local/analysis/sw/tabix/tabix-0.2.6",
       "tmp_dir" : "tmp"
     },
