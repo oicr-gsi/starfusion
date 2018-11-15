@@ -19,6 +19,7 @@ public class STARfusionDecider extends OicrDecider {
     private String queue = "";
     private String refGenomeDir = "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0/genomes/GRCh37_v19_CTAT_lib_Feb092018/ctat_genome_lib_build_dir";
     private String fusionInspect = "validate";
+    private String samtools = "/oicr/local/analysis/sw//samtools/samtools-1.2/bin";
 
 
     private String templateType = "WT";
@@ -34,6 +35,7 @@ public class STARfusionDecider extends OicrDecider {
         parser.accepts("starfusion-mem", "Optional: StarFusion allocated memory Gb, default is 64.").withRequiredArg();
         parser.accepts("ref-genome-dir").withOptionalArg();
         parser.accepts("template-type", "Optional: limit the run to only specified template type(s). Default is WT").withOptionalArg();
+        parser.accepts("samtools-dir", "Optional: Provide the path to samtools directory. Default is provided by the workflow ini").withOptionalArg();
         parser.accepts("fusion-inspect", "Optional: FusionInspector option (validate or inspect). Default is validate").withOptionalArg();
 
     }
@@ -60,6 +62,9 @@ public class STARfusionDecider extends OicrDecider {
         }
         if(this.options.has("fusion-inspect")){
             this.fusionInspect = options.valueOf("fusion-inspect").toString();
+        }
+        if(this.options.has("samtools-dir")){
+            this.samtools = options.valueOf("samtools-dir").toString();
         }
         ReturnValue val = super.init();
         return val;
@@ -137,6 +142,7 @@ public class STARfusionDecider extends OicrDecider {
         iniFileMap.put("external_name", this.external_name);
         
         iniFileMap.put("ref_genome_dir", this.refGenomeDir);
+        iniFileMap.put("samtools", this.samtools);
 
         return iniFileMap;
     }
