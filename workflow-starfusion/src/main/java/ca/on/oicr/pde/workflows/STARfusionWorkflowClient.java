@@ -213,7 +213,7 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
                     + starFusionsResultsFolder + this.outputFilenamePrefix + "_" + provOut.get(k) + ";\n");
         }
         cmd.addArgument("if [[ -d " + fusionInspectFolder  + " ]]; then cp -r " + fusionInspectFolder + " " +
-                 starFusionsResultsFolder + this.outputFilenamePrefix + "_" + "FusionInspector-" + this.fusionInspect + "; fi;\\n");
+                 starFusionsResultsFolder + this.outputFilenamePrefix + "_" + "FusionInspector-" + this.fusionInspect + "; fi;\n");
         cmd.addArgument("tar -zcvf " + this.dataDir + this.outputFilenamePrefix + "_STARFusion_output.tar.gz " + starFusionsResultsFolder + ";");
         copyPaths.setMaxMemory(Integer.toString(starFusionMem * 1024));
         copyPaths.setQueue(queue);
