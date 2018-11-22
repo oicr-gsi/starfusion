@@ -143,6 +143,7 @@ public class STARfusionDecider extends OicrDecider {
         
         iniFileMap.put("ref_genome_dir", this.refGenomeDir);
         iniFileMap.put("samtools", this.samtools);
+        iniFileMap.put("fusion_inspect", this.fusionInspect);
 
         return iniFileMap;
     }
