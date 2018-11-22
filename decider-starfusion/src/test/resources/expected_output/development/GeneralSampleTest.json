@@ -24,7 +24,7 @@
       "output_dir" : "seqware-results",
       "perl" : "/oicr/local/analysis/sw/perl/perl-5.22.2-tgl",
       "ref_genome_dir" : "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0/genomes/GRCh37_v19_CTAT_lib_Feb092018/ctat_genome_lib_build_dir",
-      "samtools" : "/oicr/local/analysis/sw//samtools/samtools-1.2",
+      "samtools" : "/oicr/local/analysis/sw//samtools/samtools-1.2/bin",
       "star" : "/oicr/local/analysis/sw/star/STAR-2.6.0c/bin/Linux_x86_64_static",
       "starfusion" : "/oicr/local/analysis/sw/starfusion/STAR-Fusion-v1.4.0",
       "starfusion_mem" : "64",

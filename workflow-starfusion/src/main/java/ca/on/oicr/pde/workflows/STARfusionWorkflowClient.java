@@ -203,7 +203,7 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
     private Job copyOutputs(HashMap<String, String> provOut) {
         List<String> keys = new ArrayList<>(provOut.keySet());
         String fusionInspectFolder = this.tmpDir + "FusionInspector-" + this.fusionInspect;
-        String starFusionsResultsFolder = this.dataDir + this.outputFilenamePrefix + "_STARFusion_output/";
+        String starFusionsResultsFolder = this.outputFilenamePrefix + "_STARFusion_output/";
         Job copyPaths = getWorkflow().createBashJob("copyoutputsjob");      
         Command cmd = copyPaths.getCommand();
         cmd.addArgument("mkdir -p " + starFusionsResultsFolder + ";");
