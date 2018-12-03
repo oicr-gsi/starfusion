@@ -37,7 +37,6 @@ public class STARfusionDecider extends OicrDecider {
         parser.accepts("template-type", "Optional: limit the run to only specified template type(s). Default is WT").withOptionalArg();
         parser.accepts("samtools-dir", "Optional: Provide the path to samtools directory. Default is provided by the workflow ini").withOptionalArg();
         parser.accepts("fusion-inspect", "Optional: FusionInspector option (validate or inspect). Default is validate").withOptionalArg();
-
     }
 
     @Override
