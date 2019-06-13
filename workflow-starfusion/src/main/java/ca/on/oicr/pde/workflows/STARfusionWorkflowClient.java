@@ -47,13 +47,11 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
     private String starFusionExport;
     
     // program opt
-    private String fusionInspect;
+    private String cpu;
 
     //Memory allocation
     private Integer starFusionMem; // in GBs
 
-    //path to bin
-    private String bin;
 
     //ref Data
     private String refGenomeDir;
@@ -61,7 +59,7 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
     private boolean manualOutput;
     private static final Logger logger = Logger.getLogger(STARfusionWorkflowClient.class.getName());
     private String queue;
-    private Map<String, SqwFile> tempFiles;
+
 
     // meta-types
     private static final String FASTQ_GZIP_MIMETYPE = "chemical/seq-na-fastq-gzip";
@@ -80,7 +78,7 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
             outputFilenamePrefix = getProperty("external_name");
             
             // fusion inspect
-            fusionInspect = getProperty("fusion_inspect");
+            cpu = getProperty("cpu");
 
             // Tools
             perl = getProperty("perl");
@@ -164,7 +162,6 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
         HashMap<String, String> provOut = new HashMap<String, String> (){{
             put("prediction_tsv", "star-fusion.fusion_predictions.tsv");
             put("abridged_tsv", "star-fusion.fusion_predictions.abridged.tsv");
-            put("coding_effect_tsv", "star-fusion.fusion_predictions.abridged.coding_effect.tsv");
         }};
         
         
@@ -172,7 +169,7 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
         processOutputs.addParent(parentJob);
         parentJob = processOutputs;
 
-               
+//               
         String starFusionsDirectory = this.dataDir + this.outputFilenamePrefix + "_STARFusion_output.tar.gz";
         SqwFile fusionInspectorSqw = createOutputFile(starFusionsDirectory, "application/tar-gzip", this.manualOutput);
         fusionInspectorSqw.getAnnotations().put("STAR_fusion_output" , "STAR_fusion");
@@ -192,8 +189,9 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
         cmd.addArgument("--genome_lib_dir " + this.refGenomeDir);
         cmd.addArgument("--left_fq " + getFiles().get("read1").getProvisionedPath());
         cmd.addArgument("--right_fq " + getFiles().get("read2").getProvisionedPath());
-        cmd.addArgument("--examine_coding_effect");
-        cmd.addArgument("--FusionInspector " + this.fusionInspect);
+//        cmd.addArgument("--examine_coding_effect");
+//        cmd.addArgument("--FusionInspector " + this.fusionInspect);
+        cmd.addArgument("--CPU " + this.cpu);
         cmd.addArgument("--output_dir " + this.tmpDir);
         starJob.setMaxMemory(Integer.toString(starFusionMem * 1024));
         starJob.setQueue(queue);
@@ -202,7 +200,7 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
     
     private Job copyOutputs(HashMap<String, String> provOut) {
         List<String> keys = new ArrayList<>(provOut.keySet());
-        String fusionInspectFolder = this.tmpDir + "FusionInspector-" + this.fusionInspect;
+//        String fusionInspectFolder = this.tmpDir + "FusionInspector-" + this.fusionInspect;
         String starFusionsResultsFolder = this.outputFilenamePrefix + "_STARFusion_output/";
         Job copyPaths = getWorkflow().createBashJob("copyoutputsjob");      
         Command cmd = copyPaths.getCommand();
@@ -212,8 +210,8 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
                     + this.tmpDir + provOut.get(k) + " " 
                     + this.dataDir + starFusionsResultsFolder + this.outputFilenamePrefix + "_" + provOut.get(k) + ";\n");
         }
-        cmd.addArgument("if [[ -d " + fusionInspectFolder  + " ]]; then cp -r " + fusionInspectFolder + " " +
-                this.dataDir +  starFusionsResultsFolder + this.outputFilenamePrefix + "_" + "FusionInspector-" + this.fusionInspect + "; fi;\n");
+//        cmd.addArgument("if [[ -d " + fusionInspectFolder  + " ]]; then cp -r " + fusionInspectFolder + " " +
+//                this.dataDir +  starFusionsResultsFolder + this.outputFilenamePrefix + "_" + "FusionInspector-" + this.fusionInspect + "; fi;\n");
         cmd.addArgument("cd " + this.dataDir + "; tar -zcvf " + this.outputFilenamePrefix + "_STARFusion_output.tar.gz " + starFusionsResultsFolder + ";");
         copyPaths.setMaxMemory(Integer.toString(starFusionMem * 1024));
         copyPaths.setQueue(queue);
