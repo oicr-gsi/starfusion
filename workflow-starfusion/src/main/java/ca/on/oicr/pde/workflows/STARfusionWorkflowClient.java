@@ -185,7 +185,7 @@ public class STARfusionWorkflowClient extends OicrWorkflow {
         cmd.addArgument(this.samExport);
         cmd.addArgument(this.starFusionExport);
         cmd.addArgument(this.tabixExport);
-        cmd.addArgument("STAR-Fusion");
+        cmd.addArgument(this.starFusion + "/STAR-Fusion");
         cmd.addArgument("--genome_lib_dir " + this.refGenomeDir);
         cmd.addArgument("--left_fq " + getFiles().get("read1").getProvisionedPath());
         cmd.addArgument("--right_fq " + getFiles().get("read2").getProvisionedPath());
