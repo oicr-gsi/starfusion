@@ -1,0 +1,25 @@
+{
+	"defaults": {
+		"description": "STAR-Fusion workflow test",
+		"metrics_calculate": "calculate.sh",
+		"metrics_compare": "compare.sh",
+		"output_metrics_dir": "/.mounts/labs/PDE/data/RegressionTests/starfusion_1.6/workflow/development/output_expectation",
+		"parameters": {
+			"wdl_options": {
+				"write_to_cache": false,
+				"read_from_cache": false
+			}
+		}
+	},
+	"tests": [
+		{
+			"id": "STAR-Fusion_golden_data",
+			"parameters": {
+				"wdl_inputs": {
+					"starFusion.fastq1": "/.mounts/labs/PDE/data/RegressionTests/starfusion_1.6/workflow/development/input_data/reads_1.fq.gz",
+					"starFusion.fastq2": "/.mounts/labs/PDE/data/RegressionTests/starfusion_1.6/workflow/development/input_data/reads_2.fq.gz"
+				}
+			}
+		}
+	]
+}
