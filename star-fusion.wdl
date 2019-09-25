@@ -2,8 +2,8 @@ version 1.0
 
 workflow starFusion {
   input {
-    String fastq1
-    String fastq2
+    File fastq1
+    File fastq2
   }
 
   parameter_meta {
@@ -32,8 +32,8 @@ workflow starFusion {
 
 task runStarFusion {
   input {
-    String fastq1
-    String fastq2
+    File fastq1
+    File fastq2
     String? starFusion = "$STAR_FUSION_ROOT/STAR-Fusion"
     Int? cpu = 8
     String? modules = "star-fusion/1.6.0 star-fusion-genome/1.6.0-hg19"
