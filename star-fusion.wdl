@@ -62,6 +62,7 @@ task runStarFusion {
 
   runtime {
     modules: "~{modules}"
+    cpu: "~{cpu}"
   }
 
   output {
