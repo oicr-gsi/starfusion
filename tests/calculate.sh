@@ -1,3 +1,9 @@
 #!/bin/bash
+set -o nounset
+set -o errexit
+set -o pipefail
+
 cd $1
-ls | sed 's/.*\.//' | sort | uniq -c
+
+find . -regex '.*\.tsv$' -exec wc -l {} \;
+ls *.tsv | sed 's/.*\.//' | sort | uniq -c

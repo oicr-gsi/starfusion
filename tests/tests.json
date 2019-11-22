@@ -3,7 +3,7 @@
     "description": "STAR-Fusion workflow test",
     "metrics_calculate": "calculate.sh",
     "metrics_compare": "compare.sh",
-    "output_metrics_dir": "/.mounts/labs/PDE/data/RegressionTests/starfusion/workflow/development/output_expectation/${project.version}",
+    "output_metrics_dir": "/.mounts/labs/gsi/testdata/starfusion/output_metrics",
     "parameters": {
       "wdl_options": {
         "write_to_cache": false,
@@ -16,8 +16,9 @@
       "id": "STAR-Fusion_golden_data",
       "parameters": {
         "wdl_inputs": {
-          "starFusion.fastq1": "/.mounts/labs/PDE/data/RegressionTests/starfusion/workflow/development/input_data/reads_1.fq.gz",
-          "starFusion.fastq2": "/.mounts/labs/PDE/data/RegressionTests/starfusion/workflow/development/input_data/reads_2.fq.gz"
+          "starFusion.fastq1": "/.mounts/labs/gsi/testdata/starfusion/reads_1.fq.gz",
+          "starFusion.fastq2": "/.mounts/labs/gsi/testdata/starfusion/reads_2.fq.gz",
+          "starFusion.chimeric": "/.mounts/labs/gsi/testdata/starfusion/test.Chimeric.out.junction"
         }
       }
     }

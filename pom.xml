@@ -15,7 +15,7 @@
 
     <properties>
         <workflow-description>Workflow to detect RNA fusion events.</workflow-description>
-        <wdl-workflow>star-fusion.wdl</wdl-workflow>
+        <wdl-workflow>starfusion.wdl</wdl-workflow>
         <test-basedir>tests/</test-basedir>
     </properties>
 

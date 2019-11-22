@@ -1,0 +1,5 @@
+{ 
+  "starFusion.fastq1": "/.mounts/labs/gsi/testdata/starfusion/reads_1.fq.gz",
+  "starFusion.fastq2": "/.mounts/labs/gsi/testdata/starfusion/reads_2.fq.gz",
+  "starFusion.chimeric": "/.mounts/labs/gsi/testdata/starfusion/test.Chimeric.out.junction"
+}
