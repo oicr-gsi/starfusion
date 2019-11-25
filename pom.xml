@@ -10,12 +10,12 @@
         <relativePath/>
     </parent>
 
-    <artifactId>starfusion</artifactId>
+    <artifactId>starFusion</artifactId>
     <version>2.0</version>
 
     <properties>
         <workflow-description>Workflow to detect RNA fusion events.</workflow-description>
-        <wdl-workflow>starfusion.wdl</wdl-workflow>
+        <wdl-workflow>starFusion.wdl</wdl-workflow>
         <test-basedir>tests/</test-basedir>
     </properties>
 

@@ -25,7 +25,18 @@ workflow starFusion {
     author: "Heather Armstrong"
     email: "heather.armstrong@oicr.on.ca"
     description: "STAR-Fusion 1.8.1"
+    dependencies: [
+     {
+      name: "star/2.7.3a",
+      url: "https://github.com/alexdobin/STAR"
+     },
+     {
+      name: "star-fusion/1.8.1",
+      url: "https://github.com/STAR-Fusion/STAR-Fusion/wiki"
+     }
+    ]
   }
+
 }
 
 task runStarFusion {
