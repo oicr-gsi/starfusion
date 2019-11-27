@@ -2,14 +2,17 @@ version 1.0
 
 workflow starFusion {
   input {
-    File fastq1
-    File fastq2
+    Array[Pair[File, File]] inputFqs
     File? chimeric
   }
 
+  scatter (fq in inputFqs) {
+    File fastq1    = fq.left
+    File fastq2    = fq.right
+  }
+
   parameter_meta {
-    fastq1: "Path to the fastq file for read 1"
-    fastq2: "Path to the fastq file for read 2"
+    inputFqs: "Array of fastq read pairs"
     chimeric: "Path to Chimeric.out.junction"
   }
 
@@ -41,8 +44,8 @@ workflow starFusion {
 
 task runStarFusion {
   input {
-    File fastq1
-    File fastq2
+    Array[File] fastq1
+    Array[File] fastq2
     File? chimeric
     String? starFusion = "$STAR_FUSION_ROOT/STAR-Fusion"
     Int? cpu = 8
@@ -51,8 +54,8 @@ task runStarFusion {
   }
 
   parameter_meta {
-    fastq1: "Path to the fastq file for read 1"
-    fastq2: "Path to the fastq file for read 2"
+    fastq1: "Array of paths to the fastq files for read 1"
+    fastq2: "Array of paths to the fastq files for read 2"
     chimeric: "Path to Chimeric.out.junction"
     starFusion: "Name of the STAR-Fusion binary"
     cpu: "Number of CPU nodes to use"
@@ -65,8 +68,8 @@ task runStarFusion {
   command <<<
       "~{starFusion}" \
       --genome_lib_dir "~{genomeDir}" \
-      --left_fq "~{fastq1}" \
-      --right_fq "~{fastq2}" \
+      --left_fq ~{sep="," fastq1} \
+      --right_fq ~{sep="," fastq2} \
       --examine_coding_effect \
       --CPU "~{cpu}" --chimeric_junction "~{chimeric}"
   >>>

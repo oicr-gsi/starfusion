@@ -15,9 +15,10 @@
     {
       "id": "STAR-Fusion_golden_data",
       "parameters": {
-        "wdl_inputs": {
-          "starFusion.fastq1": "/.mounts/labs/gsi/testdata/starfusion/reads_1.fq.gz",
-          "starFusion.fastq2": "/.mounts/labs/gsi/testdata/starfusion/reads_2.fq.gz",
+        "wdl_inputs": { 
+          "starFusion.inputFqs": [ 
+           { "Left": "/.mounts/labs/gsi/testdata/starfusion/reads_1.fq.gz", "Right": "/.mounts/labs/gsi/testdata/starfusion/reads_2.fq.gz" },
+           { "Left": "/.mounts/labs/gsi/testdata/starfusion/reads_1.fq.gz", "Right": "/.mounts/labs/gsi/testdata/starfusion/reads_2.fq.gz" } ],
           "starFusion.chimeric": "/.mounts/labs/gsi/testdata/starfusion/test.Chimeric.out.junction"
         }
       }
