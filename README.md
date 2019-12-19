@@ -22,8 +22,7 @@ java -jar cromwell.jar run starFusion.wdl --inputs inputs.json
 #### Required workflow parameters:
 Parameter|Value|Description
 ---|---|---
-`fastq1`|File|Path to the fastq file for read 1
-`fastq2`|File|Path to the fastq file for read 2
+`inputFqs`|Array[Pair[File,File]]|Array of fastq read pairs
 
 
 #### Optional workflow parameters:
@@ -36,18 +35,20 @@ Parameter|Value|Default|Description
 Parameter|Value|Default|Description
 ---|---|---|---
 `runStarFusion.starFusion`|String?|"$STAR_FUSION_ROOT/STAR-Fusion"|Name of the STAR-Fusion binary
-`runStarFusion.cpu`|Int?|8|Number of CPU nodes to use
 `runStarFusion.modules`|String?|"star-fusion/1.8.1 star-fusion-genome/1.8.1-hg38"|Names and versions of STAR-Fusion and STAR-Fusion genome to load
 `runStarFusion.genomeDir`|String?|"$STAR_FUSION_GENOME_ROOT/ctat_genome_lib_build_dir"|Path to the STAR-Fusion genome directory
+`runStarFusion.threads`|Int|8|Requested CPU threads
+`runStarFusion.jobMemory`|Int|64|Memory allocated for this job
+`runStarFusion.timeout`|Int|96|Hours before task timeout
 
 
 ### Outputs
 
 Output | Type | Description
 ---|---|---
-`fusions`|File|None
-`fusionsAbridged`|File|None
-`fusionCodingEffects`|File|None
+`fusions`|File|Raw fusion output tsv
+`fusionsAbridged`|File|Abridged fusion output tsv
+`fusionCodingEffects`|File|Annotated fusion output tsv
 
 
 ## Niassa + Cromwell
