@@ -39,7 +39,7 @@ Parameter|Value|Default|Description
 `runStarFusion.genomeDir`|String?|"$STAR_FUSION_GENOME_ROOT/ctat_genome_lib_build_dir"|Path to the STAR-Fusion genome directory
 `runStarFusion.threads`|Int|8|Requested CPU threads
 `runStarFusion.jobMemory`|Int|64|Memory allocated for this job
-`runStarFusion.timeout`|Int|96|Hours before task timeout
+`runStarFusion.timeout`|Int|72|Hours before task timeout
 
 
 ### Outputs

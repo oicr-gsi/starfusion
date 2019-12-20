@@ -20,7 +20,7 @@
            { "Left": "/.mounts/labs/gsi/testdata/starfusion/reads_1.fq.gz", "Right": "/.mounts/labs/gsi/testdata/starfusion/reads_2.fq.gz" },
            { "Left": "/.mounts/labs/gsi/testdata/starfusion/reads_1.fq.gz", "Right": "/.mounts/labs/gsi/testdata/starfusion/reads_2.fq.gz" } ],
           "starFusion.chimeric": "/.mounts/labs/gsi/testdata/starfusion/test.Chimeric.out.junction",
-          "starFusion.timeout": 1
+          "starFusion.runStarFusion.timeout": 1
         }
       }
     }
