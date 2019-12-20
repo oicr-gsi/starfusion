@@ -56,7 +56,7 @@ task runStarFusion {
     String? genomeDir = "$STAR_FUSION_GENOME_ROOT/ctat_genome_lib_build_dir"
     Int threads = 8
     Int jobMemory = 64
-    Int timeout = 96
+    Int timeout = 72
   }
 
   parameter_meta {
