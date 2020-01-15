@@ -1,0 +1,28 @@
+{
+  "defaults": {
+    "description": "STAR-Fusion workflow test",
+    "metrics_calculate": "calculate.sh",
+    "metrics_compare": "compare.sh",
+    "output_metrics_dir": "/.mounts/labs/gsi/testdata/starfusion/output_metrics",
+    "parameters": {
+      "wdl_options": {
+        "write_to_cache": false,
+        "read_from_cache": false
+      }
+    }
+  },
+  "tests": [
+    {
+      "id": "STAR-Fusion_golden_data",
+      "parameters": {
+        "wdl_inputs": { 
+          "starFusion.inputFqs": [ 
+           { "Left": "/.mounts/labs/gsi/testdata/starfusion/reads_1.fq.gz", "Right": "/.mounts/labs/gsi/testdata/starfusion/reads_2.fq.gz" },
+           { "Left": "/.mounts/labs/gsi/testdata/starfusion/reads_1.fq.gz", "Right": "/.mounts/labs/gsi/testdata/starfusion/reads_2.fq.gz" } ],
+          "starFusion.chimeric": "/.mounts/labs/gsi/testdata/starfusion/test.Chimeric.out.junction",
+          "starFusion.runStarFusion.timeout": 1
+        }
+      }
+    }
+  ]
+}
