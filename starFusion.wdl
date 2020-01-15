@@ -31,11 +31,11 @@ workflow starFusion {
   meta {
     author: "Heather Armstrong"
     email: "heather.armstrong@oicr.on.ca"
-    description: "STAR-Fusion 1.8.1"
+    description: "Workflow that takes a fastq pair or optionally a chimeric file from STAR and detects RNA-seq fusion events."
     dependencies: [
      {
-      name: "star/2.7.3a",
-      url: "https://github.com/alexdobin/STAR"
+      name: "star-fusion-genome/1.8.1-hg38",
+      url: "https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/__genome_libs_StarFv1.8"
      },
      {
       name: "star-fusion/1.8.1",
@@ -51,9 +51,9 @@ task runStarFusion {
     Array[File] fastq1
     Array[File] fastq2
     File? chimeric
-    String? starFusion = "$STAR_FUSION_ROOT/STAR-Fusion"
-    String? modules = "star-fusion/1.8.1 star-fusion-genome/1.8.1-hg38"
-    String? genomeDir = "$STAR_FUSION_GENOME_ROOT/ctat_genome_lib_build_dir"
+    String starFusion = "$STAR_FUSION_ROOT/STAR-Fusion"
+    String modules = "star-fusion/1.8.1 star-fusion-genome/1.8.1-hg38"
+    String genomeDir = "$STAR_FUSION_GENOME_ROOT/ctat_genome_lib_build_dir"
     Int threads = 8
     Int jobMemory = 64
     Int timeout = 72
