@@ -1,0 +1,9 @@
+# star-fusion-genome/1.8.1-hg38
+- name: star-fusion-genome
+  version: 1.8.1-hg38
+  build_type: extract
+  build_args:
+    prereq_type: download
+    prereq_args:
+      url: https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/__genome_libs_StarFv1.8/GRCh38_gencode_v31_CTAT_lib_Oct012019.plug-n-play.tar.gz
+      md5: 9de1d2c51c9e55f7d0a7678280a74da8
