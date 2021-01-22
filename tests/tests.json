@@ -15,11 +15,23 @@
     {
       "id": "STAR-Fusion_golden_data",
       "parameters": {
-        "wdl_inputs": { 
-          "starFusion.inputFqs": [ 
-           { "Left": "/.mounts/labs/gsi/testdata/starfusion/reads_1.fq.gz", "Right": "/.mounts/labs/gsi/testdata/starfusion/reads_2.fq.gz" },
-           { "Left": "/.mounts/labs/gsi/testdata/starfusion/reads_1.fq.gz", "Right": "/.mounts/labs/gsi/testdata/starfusion/reads_2.fq.gz" } ],
-          "starFusion.chimeric": "/.mounts/labs/gsi/testdata/starfusion/test.Chimeric.out.junction",
+        "wdl_inputs": {
+          "starFusion.inputFqs": [
+           { "Left": "/.mounts/labs/gsi/testdata/starfusion/input_data/reads_1.fq.gz", "Right": "/.mounts/labs/gsi/testdata/starfusion/input_data/reads_2.fq.gz" },
+           { "Left": "/.mounts/labs/gsi/testdata/starfusion/input_data/reads_1.fq.gz", "Right": "/.mounts/labs/gsi/testdata/starfusion/input_data/reads_2.fq.gz" } ],
+          "starFusion.chimeric": "/.mounts/labs/gsi/testdata/starfusion/input_data/test.Chimeric.out.junction",
+          "starFusion.runStarFusion.timeout": 1
+        }
+      }
+    },
+    {
+      "id": "STAR-Fusion_EPT105",
+      "parameters": {
+        "wdl_inputs": {
+          "starFusion.inputFqs": [
+           { "Left": "/.mounts/labs/gsi/testdata/starfusion/input_data/EPT105_A_R1_001.fastq.gz", "Right": "/.mounts/labs/gsi/testdata/starfusion/input_data/EPT105_A_R1_001.fastq.gz" },
+           { "Left": "/.mounts/labs/gsi/testdata/starfusion/input_data/EPT105_B_R1_001.fastq.gz", "Right": "/.mounts/labs/gsi/testdata/starfusion/input_data/EPT105_B_R2_001.fastq.gz" } ],
+          "starFusion.chimeric": "/.mounts/labs/gsi/testdata/input_data/starfusion/input_data/EPT105.Chimeric.out.junction",
           "starFusion.runStarFusion.timeout": 1
         }
       }
