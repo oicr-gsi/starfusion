@@ -75,6 +75,27 @@ mvn clean verify \
 -Dcromwell-host=http://cromwell-url:8000
 ```
 
+## Commands
+
+This section lists command(s) run by starFusion workflow
+
+starFusion workflow runs the following command (excerpt from .wdl file). 
+
+ * STARFUSION_PATH  - path to starFusion program
+ * REF_GENOME_DIR   - directory with reference genome file
+ * FASTQR* - input fastq files.
+ * THREADS - threads to use
+ * CHIMERIC_JUNCTIONS - input file with chimeric junctions information (STAR output)
+
+```
+  STARFUSION_PATH \
+  --genome_lib_dir REF_GENOME_DIR \
+  --left_fq  FASTQR1_01, FASTQR1_02, ... \
+  --right_fq FASTQR2_01, FASTQR2_02, ... \
+  --examine_coding_effect \
+  --CPU THREADS --chimeric_junction CHIMERIC_JUNCTIONS
+```
+
 ## Support
 
 For support, please file an issue on the [Github project](https://github.com/oicr-gsi) or send an email to gsi@oicr.on.ca .
