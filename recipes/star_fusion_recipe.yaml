@@ -1,0 +1,115 @@
+# perl/"5.30"
+- name: perl
+  version: "5.30"
+  build_type: perl
+  build_args:
+    prereq_args:
+      prereq_args:
+        md5: f399f3aaee90ddcff5eadd3bccdaacc0
+        url: https://www.cpan.org/src/5.0/perl-5.30.1.tar.xz
+      prereq_type: download
+    prereq_type: extract
+  system_depends:
+  - name: libreadline-dev
+    permitted_os: ["Ubuntu18.04"]
+  - name: libreadline6-dev
+    permitted_os: ["Debian8.11"]
+
+# star/2.7.3a
+- name: star
+  version: 2.7.3a
+  build_type: custom
+  build_args:
+    prereq_args:
+      prereq_args:
+        sha256: de204175351dc5f5ecc40cf458f224617654bdb8e00df55f0bb03a5727bf26f9
+        url: https://github.com/alexdobin/STAR/archive/2.7.3a.tar.gz
+      prereq_type: download
+    prereq_type: extract
+    steps:
+      - build_type: copy
+        build_args:
+         from: bin/Linux_x86_64_static/STAR
+         to: "bin/STAR"
+      - build_type: copy
+        build_args:
+         from: bin/Linux_x86_64_static/STARlong
+         to: "bin/STARlong"
+
+# htslib/1.9
+- name: htslib
+  version: 1.9
+  build_type: autotools
+  build_args:
+    prereq_args:
+      prereq_args:
+        sha256: e04b877057e8b3b8425d957f057b42f0e8509173621d3eccaedd0da607d9929a
+        url: https://github.com/samtools/htslib/releases/download/1.9/htslib-1.9.tar.bz2
+      prereq_type: download
+    prereq_type: extract
+  system_depends:
+    - name: libbz2-dev
+    - name: liblzma-dev
+
+# samtools/1.9
+- name: samtools
+  version: 1.9
+  build_type: autotools
+  build_args:
+    prereq_args:
+      prereq_args:
+        sha256: 083f688d7070082411c72c27372104ed472ed7a620591d06f928e653ebc23482
+        url: https://github.com/samtools/samtools/releases/download/1.9/samtools-1.9.tar.bz2
+      prereq_type: download
+    prereq_type: extract
+    configure:
+    - --with-htslib={htslib_root}
+    - --enable-configure-htslib=false
+  depends:
+  - name: htslib
+    version: 1.9
+  system_depends:
+  - name: libncurses5-dev
+
+# star-fusion/1.8.1
+- name: star-fusion
+  version: 1.8.1
+  build_type: custom
+  build_args:
+    prereq_args:
+      sha256: daef3238904c9aafe197559b09fd5fc37034b2e38ae993c403c5c557b9c5623e
+      url: https://github.com/STAR-Fusion/STAR-Fusion/releases/download/STAR-Fusion-v1.8.1/STAR-Fusion-v1.8.1.FULL.tar.gz
+    prereq_type: download
+    steps:
+      - build_type: cpan
+        build_args:
+         package: Types::Serialiser
+      - build_type: cpan
+        build_args:
+          package: JSON::XS
+      - build_type: cpan
+        build_args:
+          package: PerlIO::gzip
+      - build_type: cpan
+        build_args:
+          package: URI::Escape
+      - build_type: cpan
+        build_args:
+          package: Carp::Assert
+      - build_type: cpan
+        build_args:
+          package: DB_File
+      - build_type: extract
+      - command: ["make", "--directory={output_dir}"]
+      - command: ["cp", "-r", "{output_dir}/PerlLib", "{output_dir}/lib/perl5"]
+      - command: ["cp", "{output_dir}/STAR-Fusion", "{output_dir}/bin/STAR-Fusion"]
+      - command: ["cp", "{output_dir}/FusionFilter/blast_and_promiscuity_filter.pl", "{output_dir}/bin/blast_and_promiscuity_filter.pl"]
+  system_depends:
+    - name: libdb5.3-dev
+  depends:
+    - name: perl
+      version: "5.30"
+    - name: star
+      version: 2.7.3a
+    - name: samtools
+      version: 1.9
