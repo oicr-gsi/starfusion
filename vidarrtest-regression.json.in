@@ -1,0 +1,115 @@
+[
+    {
+        "arguments": {
+            "starFusion.chimeric": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/starfusion/input_data/test.Chimeric.out.junction",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "starFusion.inputFqs": [
+                {
+                    "left": {
+                        "contents": {
+                            "configuration": "/.mounts/labs/gsi/testdata/starfusion/input_data/reads_1.fq.gz",
+                            "externalIds": [
+                                {
+                                    "id": "TEST",
+                                    "provider": "TEST"
+                                }
+                            ]
+                        },
+                        "type": "EXTERNAL"
+                    },
+                    "right": {
+                        "contents": {
+                            "configuration": "/.mounts/labs/gsi/testdata/starfusion/input_data/reads_2.fq.gz",
+                            "externalIds": [
+                                {
+                                    "id": "TEST",
+                                    "provider": "TEST"
+                                }
+                            ]
+                        },
+                        "type": "EXTERNAL"
+                    }
+                },
+                {
+                    "left": {
+                        "contents": {
+                            "configuration": "/.mounts/labs/gsi/testdata/starfusion/input_data/reads_1.fq.gz",
+                            "externalIds": [
+                                {
+                                    "id": "TEST",
+                                    "provider": "TEST"
+                                }
+                            ]
+                        },
+                        "type": "EXTERNAL"
+                    },
+                    "right": {
+                        "contents": {
+                            "configuration": "/.mounts/labs/gsi/testdata/starfusion/input_data/reads_2.fq.gz",
+                            "externalIds": [
+                                {
+                                    "id": "TEST",
+                                    "provider": "TEST"
+                                }
+                            ]
+                        },
+                        "type": "EXTERNAL"
+                    }
+                }
+            ],
+            "starFusion.runStarFusion.genomeDir": null,
+            "starFusion.runStarFusion.jobMemory": null,
+            "starFusion.runStarFusion.modules": null,
+            "starFusion.runStarFusion.starFusion": null,
+            "starFusion.runStarFusion.threads": null,
+            "starFusion.runStarFusion.timeout": 1
+        },
+        "description": "STAR-Fusion workflow test",
+        "engineArguments": {},
+        "id": "STAR-Fusion_golden_data",
+        "metadata": {
+            "starFusion.fusionCodingEffects": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_starFusion_STAR-Fusion_golden_data_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "starFusion.fusions": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_starFusion_STAR-Fusion_golden_data_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "starFusion.fusionsAbridged": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_starFusion_STAR-Fusion_golden_data_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            }
+        },
+        "validators": [
+            {
+                "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
+                "metrics_compare": "@CHECKOUT@/tests/compare.sh",
+                "output_metrics": "/.mounts/labs/gsi/testdata/starfusion/output_metrics/STAR-Fusion_golden_data.metrics",
+                "type": "script"
+            }
+        ]
+    }
+]
